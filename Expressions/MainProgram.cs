@@ -8,8 +8,8 @@ namespace Expressions
         {
             if (args.Length == 2)
             {
-                Scanner scanner = new Scanner(args[0]);
-                Parser parser = new Parser(scanner);
+                var scanner = new Scanner(args[0]);
+                var parser = new Parser(scanner);
                 parser.Parse();
                 switch (args[1])
                 {
@@ -20,8 +20,8 @@ namespace Expressions
                         parser.program.Check();
                         return;
                     case "compile":
-                        Generator gen = new Generator();
-                        String outputFile = "a.out";
+                        var gen = new Generator();
+                        const string outputFile = "a.out";
                         parser.program.Compile(gen, outputFile);
                         return;
                 }
