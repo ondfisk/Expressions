@@ -22,9 +22,9 @@ namespace Expressions
             get { return 4; }
         }
 
-        public override void ToBytecode(Dictionary<string, int> labelMap, List<int> bytecode)
+        public override void ToBytecode(IDictionary<string, int> labelMap, List<int> bytecode)
         {
-            bytecode.Add((int)opcode);
+            bytecode.Add((int)Opcode);
             bytecode.Add(argCount);
             bytecode.Add(slideBy);
             bytecode.Add(labelMap[target]);

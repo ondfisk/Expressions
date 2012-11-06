@@ -17,9 +17,9 @@ namespace Expressions
             get { return 2; }
         }
 
-        public override void ToBytecode(Dictionary<string, int> labelMap, List<int> bytecode)
+        public override void ToBytecode(IDictionary<string, int> labelMap, List<int> bytecode)
         {
-            bytecode.Add((int)opcode);
+            bytecode.Add((int)Opcode);
             bytecode.Add(argument);
         }
 

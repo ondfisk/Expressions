@@ -1,8 +1,8 @@
 namespace Expressions
 {
-    public class IncSP : IntArgInstr
+    public class IncSp : IntArgInstr
     {
-        public IncSP(int argument)
+        public IncSp(int argument)
             : base(Opcode.INCSP, argument)
         {
         }

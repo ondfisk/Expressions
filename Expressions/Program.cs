@@ -41,8 +41,8 @@ namespace Expressions
 
             // Compile expression
             e.Compile(cenv, gen);
-            gen.Emit(Instruction.PRINTI);
-            gen.Emit(Instruction.STOP);
+            gen.Emit(Instruction.PrintI);
+            gen.Emit(Instruction.Stop);
 
             // Compile functions
             foreach (FunctionDefinition f in fenv.GetFunctions())

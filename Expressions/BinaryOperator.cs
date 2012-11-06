@@ -98,48 +98,48 @@ namespace Expressions
             switch (_op)
             {
                 case Operator.Add:
-                    gen.Emit(Instruction.ADD);
+                    gen.Emit(Instruction.Add);
                     break;
                 case Operator.Div:
-                    gen.Emit(Instruction.DIV);
+                    gen.Emit(Instruction.Div);
                     break;
                 case Operator.Mul:
-                    gen.Emit(Instruction.MUL);
+                    gen.Emit(Instruction.Mul);
                     break;
                 case Operator.Sub:
-                    gen.Emit(Instruction.SUB);
+                    gen.Emit(Instruction.Sub);
                     break;
                 case Operator.Eq:
-                    gen.Emit(Instruction.EQ);
+                    gen.Emit(Instruction.Eq);
                     break;
                 case Operator.Ne:
-                    gen.Emit(Instruction.EQ);
-                    gen.Emit(Instruction.NOT);
+                    gen.Emit(Instruction.Eq);
+                    gen.Emit(Instruction.Not);
                     break;
                 case Operator.Ge:
                     gen.Emit(Instruction.LT);
-                    gen.Emit(Instruction.NOT);
+                    gen.Emit(Instruction.Not);
                     break;
                 case Operator.Gt:
-                    gen.Emit(Instruction.SWAP);
+                    gen.Emit(Instruction.Swap);
                     gen.Emit(Instruction.LT);
                     break;
                 case Operator.Le:
-                    gen.Emit(Instruction.SWAP);
+                    gen.Emit(Instruction.Swap);
                     gen.Emit(Instruction.LT);
-                    gen.Emit(Instruction.NOT);
+                    gen.Emit(Instruction.Not);
                     break;
                 case Operator.Lt:
                     gen.Emit(Instruction.LT);
                     break;
                 case Operator.And:
-                    gen.Emit(Instruction.MUL);
+                    gen.Emit(Instruction.Mul);
                     break;
                 case Operator.Or:
-                    gen.Emit(Instruction.ADD);
+                    gen.Emit(Instruction.Add);
                     gen.Emit(new CstI(0));
-                    gen.Emit(Instruction.EQ);
-                    gen.Emit(Instruction.NOT);
+                    gen.Emit(Instruction.Eq);
+                    gen.Emit(Instruction.Not);
                     break;
                 default:
                     throw new InvalidOperationException(string.Format("Unknown binary operator: {0}", _op));

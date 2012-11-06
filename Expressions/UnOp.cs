@@ -53,12 +53,12 @@ namespace Expressions
             switch (op)
             {
                 case Operator.Not:
-                    gen.Emit(Instruction.NOT);
+                    gen.Emit(Instruction.Not);
                     break;
                 case Operator.Neg:
                     gen.Emit(new CstI(0));
-                    gen.Emit(Instruction.SWAP);
-                    gen.Emit(Instruction.SUB);
+                    gen.Emit(Instruction.Swap);
+                    gen.Emit(Instruction.Sub);
                     break;
                 default:
                     throw new Exception("Unknown unary operator: " + op);

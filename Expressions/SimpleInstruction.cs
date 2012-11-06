@@ -11,14 +11,14 @@ namespace Expressions
             get { return 1; }
         }
 
-        public override void ToBytecode(Dictionary<string, int> labelMap, List<int> bytecode)
+        public override void ToBytecode(IDictionary<string, int> labelMap, List<int> bytecode)
         {
-            bytecode.Add((int)opcode);
+            bytecode.Add((int)Opcode);
         }
 
         public override string ToString()
         {
-            return opcode.ToString();
+            return Opcode.ToString();
         }
     }
 }

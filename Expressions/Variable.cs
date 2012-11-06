@@ -24,7 +24,7 @@ namespace Expressions
         public override void Compile(CompilationEnvironment env, Generator gen)
         {
             env.CompileVariable(gen, name);
-            gen.Emit(Instruction.LDI);
+            gen.Emit(Instruction.LdI);
         }
     }
 }

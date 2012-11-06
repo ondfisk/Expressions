@@ -54,9 +54,9 @@ namespace Expressions
             {
                 if (variableName == name)
                 {
-                    gen.Emit(Instruction.GETSP);
+                    gen.Emit(Instruction.GetSp);
                     gen.Emit(new CstI(offset));
-                    gen.Emit(Instruction.SUB);
+                    gen.Emit(Instruction.Sub);
                     return;
                 }
                 offset++;
