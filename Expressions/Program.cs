@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace Expressions
 {
@@ -9,57 +10,55 @@ namespace Expressions
     /// </summary>
     public class Program
     {
-        private FunctionEnvironment fenv;
-        private Expression e;
+        private readonly FunctionEnvironment _functionEnvironment;
+        private readonly Expression _expression;
 
-        public Program(Dictionary<string, FunctionDefinition> functions, Expression e)
+        public Program(IDictionary<string, FunctionDefinition> functions, Expression expression)
         {
-            fenv = new FunctionEnvironment(functions);
-            this.e = e;
+            _functionEnvironment = new FunctionEnvironment(functions);
+            _expression = expression;
         }
 
         public int Eval()
         {
-            RuntimeEnvironment renv = new RuntimeEnvironment();
-            return e.Eval(renv, fenv);
+            var renv = new RuntimeEnvironment();
+            return _expression.Eval(renv, _functionEnvironment);
         }
 
         public Type Check()
         {
-            TypeCheckingEnvironment tenv = new TypeCheckingEnvironment();
-            fenv.Check(tenv, fenv);
-            return e.Check(tenv, fenv);
+            var tenv = new TypeCheckingEnvironment();
+            _functionEnvironment.Check(tenv, _functionEnvironment);
+            return _expression.Check(tenv, _functionEnvironment);
         }
 
         public void Compile(Generator gen, String outputFile)
         {
             // Generate compiletime environment
-            var labelMap = new Dictionary<String, String>();
-            foreach (String funName in fenv.GetFunctionNames())
-                labelMap.Add(funName, Label.Fresh());
-            CompilationEnvironment cenv = new CompilationEnvironment(labelMap);
+            var labels = _functionEnvironment.GetFunctionNames().ToDictionary(funName => funName, funName => Label.Fresh());
+            var compilationEnvironment = new CompilationEnvironment(labels);
 
             // Compile expression
-            e.Compile(cenv, gen);
+            _expression.Compile(compilationEnvironment, gen);
             gen.Emit(Instruction.PrintI);
             gen.Emit(Instruction.Stop);
 
             // Compile functions
-            foreach (FunctionDefinition f in fenv.GetFunctions())
+            foreach (var functionDefinition in _functionEnvironment.GetFunctions())
             {
-                cenv = new CompilationEnvironment(labelMap);
-                f.Compile(gen, cenv);
+                compilationEnvironment = new CompilationEnvironment(labels);
+                functionDefinition.Compile(gen, compilationEnvironment);
             }
 
             //  Generate bytecode at and print to file
             gen.PrintCode();
-            int[] bytecode = gen.ToBytecode();
-            using (TextWriter wr = new StreamWriter(outputFile))
+            var bytecode = gen.ToBytecode();
+            using (TextWriter writer = new StreamWriter(outputFile))
             {
-                foreach (int b in bytecode)
+                foreach (var b in bytecode)
                 {
-                    wr.Write(b);
-                    wr.Write(" ");
+                    writer.Write(b);
+                    writer.Write(" ");
                 }
             }
         }
