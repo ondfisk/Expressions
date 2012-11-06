@@ -12,7 +12,7 @@ namespace Expressions
         private FunctionEnvironment fenv;
         private Expression e;
 
-        public Program(Dictionary<string, FuncDef> functions, Expression e)
+        public Program(Dictionary<string, FunctionDefinition> functions, Expression e)
         {
             fenv = new FunctionEnvironment(functions);
             this.e = e;
@@ -45,7 +45,7 @@ namespace Expressions
             gen.Emit(Instruction.STOP);
 
             // Compile functions
-            foreach (FuncDef f in fenv.getFunctions())
+            foreach (FunctionDefinition f in fenv.getFunctions())
             {
                 cenv = new CompilationEnvironment(labelMap);
                 f.Compile(gen, cenv);

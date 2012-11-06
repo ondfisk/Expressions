@@ -8,20 +8,20 @@ namespace Expressions
     /// </summary>
     public class FunctionEnvironment
     {
-        private Dictionary<string, FuncDef> functions;
+        private Dictionary<string, FunctionDefinition> functions;
 
-        public FunctionEnvironment(Dictionary<string, FuncDef> functions)
+        public FunctionEnvironment(Dictionary<string, FunctionDefinition> functions)
         {
             this.functions = functions;
         }
 
         public void Check(TypeCheckingEnvironment typeCheckingEnvironment, FunctionEnvironment functionEnvironment)
         {
-            foreach (FuncDef f in functions.Values)
+            foreach (FunctionDefinition f in functions.Values)
                 f.Check(typeCheckingEnvironment, functionEnvironment);
         }
 
-        public FuncDef getFunction(String name)
+        public FunctionDefinition getFunction(String name)
         {
             if (functions.ContainsKey(name))
                 return functions[name];
@@ -29,9 +29,9 @@ namespace Expressions
                 throw new Exception("Undefined Function " + name);
         }
 
-        public List<FuncDef> getFunctions()
+        public List<FunctionDefinition> getFunctions()
         {
-            return new List<FuncDef>(functions.Values);
+            return new List<FunctionDefinition>(functions.Values);
         }
 
         public List<String> getFunctionNames()

@@ -22,7 +22,7 @@ namespace Expressions
             var function = functionEnvironment.getFunction(_name);
             if (function.CheckArgType(argumentType))
             {
-                return function.returnType;
+                return function.ReturnType;
             }
             throw new InvalidOperationException(string.Format("Type error in call of function {0}", _name));
         }

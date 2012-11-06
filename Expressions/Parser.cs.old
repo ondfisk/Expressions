@@ -88,19 +88,19 @@ public Program program;
 
 	
 	void Program(out Program p) {
-		p = null; FuncDef f = null; String name = null; Expression e = null;
-		    Dictionary<String,FuncDef> functions = new Dictionary<string, FuncDef>(); 
+		p = null; FunctionDefinition f = null; String name = null; Expression e = null;
+		    Dictionary<string,FunctionDefinition> functions = new Dictionary<string, FunctionDefinition>(); 
 		while (la.kind == 7 || la.kind == 8) {
-			FuncDef(out f, out name);
+			FunctionDefinition(out f, out name);
 			functions.Add(name, f); 
 		}
 		Expr(out e);
 		p = new Program(functions, e); 
 	}
 
-	void FuncDef(out FuncDef f, out String name) {
+	void FunctionDefinition(out FunctionDefinition f, out String name) {
 		f = null; String an = null; Expression e = null;
-		                                   Type at = null; Type rt = null;
+		             Type at = null; Type rt = null;
 		TypeExpr(out rt);
 		Ident(out name);
 		Expect(3);
@@ -110,7 +110,7 @@ public Program program;
 		Expect(5);
 		Expr(out e);
 		Expect(6);
-		f = new FuncDef(rt, name, at, an, e); 
+		f = new FunctionDefinition(rt, name, at, an, e); 
 	}
 
 	void Expr(out Expression e) {

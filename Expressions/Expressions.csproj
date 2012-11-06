@@ -50,7 +50,7 @@
     <Compile Include="RET.cs" />
     <Compile Include="FunctionEnvironment.cs" />
     <Compile Include="FunctionCall.cs" />
-    <Compile Include="FuncDef.cs" />
+    <Compile Include="FunctionDefinition.cs" />
     <Compile Include="Generator.cs" />
     <Compile Include="GOTO.cs" />
     <Compile Include="IFNZRO.cs" />
