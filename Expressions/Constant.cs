@@ -2,28 +2,28 @@ namespace Expressions
 {
     public class Constant : Expression
     {
-        private readonly int value;
-        private readonly Type type;
+        private readonly int _value;
+        private readonly Type _type;
 
         public Constant(int value, Type type)
         {
-            this.value = value;
-            this.type = type;
+            _value = value;
+            _type = type;
         }
 
         public override int Eval(RuntimeEnvironment runtimeEnvironment, FunctionEnvironment functionEnvironment)
         {
-            return value;
+            return _value;
         }
 
         public override Type Check(TypeCheckingEnvironment typeCheckingEnvironment, FunctionEnvironment functionEnvironment)
         {
-            return type;
+            return _type;
         }
 
         public override void Compile(CompilationEnvironment env, Generator gen)
         {
-            gen.Emit(new CSTI(value));
+            gen.Emit(new CSTI(_value));
         }
     }
 }
