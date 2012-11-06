@@ -1,7 +1,7 @@
 namespace Expressions
 {
-    public class CSTI : IntArgInstr
+    public class CstI : IntArgInstr
     {
-        public CSTI(int argument) : base(Opcode.CSTI, argument) { }
+        public CstI(int argument) : base(Opcode.CSTI, argument) { }
     }
 }
