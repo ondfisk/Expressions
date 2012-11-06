@@ -39,7 +39,7 @@ namespace Expressions
             _opcode = opcode;
         }
 
-        public abstract void ToBytecode(IDictionary<string, int> labelMap, List<int> bytecode);
+        public abstract void ToBytecode(IDictionary<string, int> labels, List<int> bytecode);
 
         public override string ToString()
         {

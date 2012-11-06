@@ -1,32 +1,36 @@
-using System;
 using System.Collections.Generic;
 
 namespace Expressions
 {
     public class JumpInstruction : Instruction
     {
-        public readonly String target;
-
-        public JumpInstruction(Opcode opcode, String target)
-            : base(opcode)
-        {
-            this.target = target;
-        }
+        private readonly string _target;
 
         public override int Size
         {
             get { return 2; }
         }
 
-        public override void ToBytecode(IDictionary<string, int> labelMap, List<int> bytecode)
+        public string Target
+        {
+            get { return _target; }
+        }
+
+        public JumpInstruction(Opcode opcode, string target)
+            : base(opcode)
+        {
+            _target = target;
+        }
+
+        public override void ToBytecode(IDictionary<string, int> labels, List<int> bytecode)
         {
             bytecode.Add((int)Opcode);
-            bytecode.Add(labelMap[target]);
+            bytecode.Add(labels[_target]);
         }
 
         public override string ToString()
         {
-            return base.ToString() + " " + target;
+            return string.Join(" ", base.ToString(), _target);
         }
     }
 }

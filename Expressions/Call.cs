@@ -29,11 +29,11 @@ namespace Expressions
             _target = target;
         }
 
-        public override void ToBytecode(IDictionary<string, int> labelMap, List<int> bytecode)
+        public override void ToBytecode(IDictionary<string, int> labels, List<int> bytecode)
         {
             bytecode.Add((int)Opcode);
             bytecode.Add(_argCount);
-            bytecode.Add(labelMap[_target]);
+            bytecode.Add(labels[_target]);
         }
 
         public override string ToString()

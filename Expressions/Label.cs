@@ -19,7 +19,7 @@ namespace Expressions
             get { return 0; }
         }
 
-        public override void ToBytecode(IDictionary<string, int> labelMap, List<int> bytecode)
+        public override void ToBytecode(IDictionary<string, int> labels, List<int> bytecode)
         {
             // No bytecode for a label
         }

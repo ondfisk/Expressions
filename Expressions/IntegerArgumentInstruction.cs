@@ -22,7 +22,7 @@ namespace Expressions
             _argument = argument;
         }
 
-        public override void ToBytecode(IDictionary<string, int> labelMap, List<int> bytecode)
+        public override void ToBytecode(IDictionary<string, int> labels, List<int> bytecode)
         {
             bytecode.Add((int)Opcode);
             bytecode.Add(_argument);
