@@ -37,7 +37,7 @@ namespace Expressions
         public override void Compile(CompilationEnvironment env, Generator gen)
         {
             _arg.Compile(env, gen);
-            var label = env.getFunctionLabel(_name);
+            var label = env.GetFunctionLabel(_name);
             gen.Emit(new Call(1, label));
         }
     }

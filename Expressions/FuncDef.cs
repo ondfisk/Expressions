@@ -40,7 +40,7 @@ namespace Expressions
         public void Compile(Generator gen, CompilationEnvironment env)
         {
             env.DeclareLocal(formArg.Item1); // Formal argument name points to top of stack
-            gen.Label(env.getFunctionLabel(fName));
+            gen.Label(env.GetFunctionLabel(fName));
             body.Compile(env, gen);
             gen.Emit(new RET(1));
         }

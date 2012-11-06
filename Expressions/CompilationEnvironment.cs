@@ -10,41 +10,47 @@ namespace Expressions
     /// </summary>
     public class CompilationEnvironment
     {
-        private readonly Stack<string> locals;
-        private Dictionary<string, string> labelMap;
+        private readonly Stack<string> _locals;
+        private readonly IDictionary<string, string> _labels;
 
-        public CompilationEnvironment(Dictionary<string, string> labelMap)
+        public CompilationEnvironment(IDictionary<string, string> labels)
         {
-            locals = new Stack<string>();
-            this.labelMap = labelMap;
+            if (labels == null)
+            {
+                throw new ArgumentNullException("labels");
+            }
+            _locals = new Stack<string>();
+            _labels = labels;
         }
 
-        public void PopEnv()
+        public void PopEnvironment()
         {
-            locals.Pop();
+            _locals.Pop();
         }
 
-        public void DeclareLocal(String name)
+        public void DeclareLocal(string name)
         {
-            locals.Push(name);
+            _locals.Push(name);
         }
 
         public void PushTemporary()
         {
-            locals.Push("_ temporary _");
+            _locals.Push("_ temporary _");
         }
 
         public void PopTemporary()
         {
-            String s = locals.Pop();
+            var s = _locals.Pop();
             if (s != "_ temporary _")
-                throw new Exception("Internal problem: popping non-temporary");
+            {
+                throw new InvalidOperationException("Internal problem: popping non-temporary");
+            }
         }
 
         public void CompileVariable(Generator gen, String name)
         {
-            int offset = 0;
-            foreach (String variableName in locals)
+            var offset = 0;
+            foreach (var variableName in _locals)
             {
                 if (variableName == name)
                 {
@@ -53,18 +59,18 @@ namespace Expressions
                     gen.Emit(Instruction.SUB);
                     return;
                 }
-                else
-                    offset++;
+                offset++;
             }
-            throw new Exception("Undeclared variable: " + name);
+            throw new InvalidOperationException("Undeclared variable: " + name);
         }
 
-        public String getFunctionLabel(String funName)
+        public string GetFunctionLabel(string funName)
         {
-            if (labelMap.ContainsKey(funName))
-                return labelMap[funName];
-            else
-                throw new Exception("Internal error: Undefined function " + funName);
+            if (_labels.ContainsKey(funName))
+            {
+                return _labels[funName];
+            }
+            throw new InvalidOperationException("Internal error: Undefined function " + funName);
         }
     }
 }
