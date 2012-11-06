@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BinOp.cs" />
+    <Compile Include="BinaryOperator.cs" />
     <Compile Include="Call.cs" />
     <Compile Include="CEnv.cs" />
     <Compile Include="Constant.cs" />

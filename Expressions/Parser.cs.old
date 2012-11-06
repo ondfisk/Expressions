@@ -120,7 +120,7 @@ public Program program;
 		while (la.kind == 9) {
 			AndOp(out op);
 			BoolTerm(out e2);
-			e = new BinOp(op, e, e2); 
+			e = new BinaryOperator(op, e, e2); 
 		}
 	}
 
@@ -147,7 +147,7 @@ public Program program;
 		while (la.kind == 10) {
 			OrOp(out op);
 			SimBoolExpr(out e2);
-			e = new BinOp(op, e, e2); 
+			e = new BinaryOperator(op, e, e2); 
 		}
 	}
 
@@ -164,7 +164,7 @@ public Program program;
 		if (StartOf(1)) {
 			RelOp(out op);
 			SimExpr(out e2);
-			e = new BinOp(op, e, e2); 
+			e = new BinaryOperator(op, e, e2); 
 		}
 	}
 
@@ -181,7 +181,7 @@ public Program program;
 		while (la.kind == 17 || la.kind == 18) {
 			AddOp(out op);
 			Term(out e2);
-			e = new BinOp(op, e, e2); 
+			e = new BinaryOperator(op, e, e2); 
 		}
 	}
 
@@ -229,7 +229,7 @@ public Program program;
 		while (la.kind == 19 || la.kind == 20) {
 			MulOp(out op);
 			Factor(out e2);
-			e = new BinOp(op, e, e2);       
+			e = new BinaryOperator(op, e, e2);       
 		}
 	}
 
@@ -253,7 +253,7 @@ public Program program;
 				Get();
 				Expr(out e1);
 				Expect(4);
-				e = new FuncCall(name, e1); 
+				e = new FunctionCall(name, e1); 
 			}
 		} else if (la.kind == 2) {
 			Get();
