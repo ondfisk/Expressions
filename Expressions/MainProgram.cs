@@ -1,3 +1,9 @@
+// Abstract syntax, interpretation and compilation 
+// for arithmetic and logical expressions
+// sestoft@itu.dk 2007-03-12, 2010-02-08
+// Extended with functions by Rasmus Mogelberg 2011-10-20
+// Split into multiple files and proper naming as to C# 5.0 conventions by Rasmus Nielsen 2012-11-06
+
 using System;
 
 namespace Expressions

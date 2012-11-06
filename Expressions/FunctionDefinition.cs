@@ -50,7 +50,7 @@ namespace Expressions
             env.DeclareLocal(_argument.Item1); // Formal argument name points to top of stack
             gen.Label(env.GetFunctionLabel(_name));
             _body.Compile(env, gen);
-            gen.Emit(new RET(1));
+            gen.Emit(new Return(1));
         }
 
         public bool CheckArgType(Type argType)
