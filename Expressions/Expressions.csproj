@@ -52,7 +52,7 @@
     <Compile Include="FunctionCall.cs" />
     <Compile Include="FunctionDefinition.cs" />
     <Compile Include="Generator.cs" />
-    <Compile Include="GOTO.cs" />
+    <Compile Include="GotoGoto.cs" />
     <Compile Include="IFNZRO.cs" />
     <Compile Include="IFZERO.cs" />
     <Compile Include="INCSP.cs" />
