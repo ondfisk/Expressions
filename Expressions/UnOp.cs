@@ -13,7 +13,7 @@ namespace Expressions
             this.e1 = e1;
         }
 
-        public override int Eval(REnv runtimeEnvironment, FEnv functionEnvironment)
+        public override int Eval(RuntimeEnvironment runtimeEnvironment, FunctionEnvironment functionEnvironment)
         {
             int v1 = e1.Eval(runtimeEnvironment, functionEnvironment);
             switch (op)
@@ -27,7 +27,7 @@ namespace Expressions
             }
         }
 
-        public override Type Check(TEnv typeCheckingEnvironment, FEnv functionEnvironment)
+        public override Type Check(TypeCheckingEnvironment typeCheckingEnvironment, FunctionEnvironment functionEnvironment)
         {
             Type t1 = e1.Check(typeCheckingEnvironment, functionEnvironment);
             switch (op)
@@ -47,7 +47,7 @@ namespace Expressions
             }
         }
 
-        public override void Compile(CEnv env, Generator gen)
+        public override void Compile(CompilationEnvironment env, Generator gen)
         {
             e1.Compile(env, gen);
             switch (op)

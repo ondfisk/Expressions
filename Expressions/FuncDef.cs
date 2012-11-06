@@ -19,16 +19,16 @@ namespace Expressions
             this.fName = fName;
         }
 
-        public void Check(TEnv env, FEnv fEnv)
+        public void Check(TypeCheckingEnvironment typeCheckingEnvironment, FunctionEnvironment functionEnvironment)
         {
-            env.DeclareLocal(formArg.Item1, formArg.Item2);
-            Type t = body.Check(env, fEnv);
-            env.PopEnv();
+            typeCheckingEnvironment.DeclareLocal(formArg.Item1, formArg.Item2);
+            Type t = body.Check(typeCheckingEnvironment, functionEnvironment);
+            typeCheckingEnvironment.PopEnv();
             if (t != returnType)
                 throw new InvalidOperationException("Body of " + fName + " returns " + t + ", " + returnType + " expected");
         }
 
-        public int Eval(REnv env, FEnv fenv, int arg)
+        public int Eval(RuntimeEnvironment env, FunctionEnvironment fenv, int arg)
         {
             env.AllocateLocal(formArg.Item1);
             env.GetVariable(formArg.Item1).value = arg;
@@ -37,7 +37,7 @@ namespace Expressions
             return v;
         }
 
-        public void Compile(Generator gen, CEnv env)
+        public void Compile(Generator gen, CompilationEnvironment env)
         {
             env.DeclareLocal(formArg.Item1); // Formal argument name points to top of stack
             gen.Label(env.getFunctionLabel(fName));

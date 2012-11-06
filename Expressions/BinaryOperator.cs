@@ -14,7 +14,7 @@ namespace Expressions
             _e2 = e2;
         }
 
-        public override int Eval(REnv runtimeEnvironment, FEnv functionEnvironment)
+        public override int Eval(RuntimeEnvironment runtimeEnvironment, FunctionEnvironment functionEnvironment)
         {
             var v1 = _e1.Eval(runtimeEnvironment, functionEnvironment);
             var v2 = _e2.Eval(runtimeEnvironment, functionEnvironment);
@@ -50,7 +50,7 @@ namespace Expressions
             }
         }
 
-        public override Type Check(TEnv typeCheckingEnvironment, FEnv functionEnvironment)
+        public override Type Check(TypeCheckingEnvironment typeCheckingEnvironment, FunctionEnvironment functionEnvironment)
         {
             var t1 = _e1.Check(typeCheckingEnvironment, functionEnvironment);
             var t2 = _e2.Check(typeCheckingEnvironment, functionEnvironment);
@@ -89,7 +89,7 @@ namespace Expressions
             }
         }
 
-        public override void Compile(CEnv env, Generator gen)
+        public override void Compile(CompilationEnvironment env, Generator gen)
         {
             _e1.Compile(env, gen);
             env.PushTemporary();

@@ -9,24 +9,24 @@ namespace Expressions
     /// </summary>
     public class Program
     {
-        private FEnv fenv;
+        private FunctionEnvironment fenv;
         private Expression e;
 
         public Program(Dictionary<string, FuncDef> functions, Expression e)
         {
-            fenv = new FEnv(functions);
+            fenv = new FunctionEnvironment(functions);
             this.e = e;
         }
 
         public int Eval()
         {
-            REnv renv = new REnv();
+            RuntimeEnvironment renv = new RuntimeEnvironment();
             return e.Eval(renv, fenv);
         }
 
         public Type Check()
         {
-            TEnv tenv = new TEnv();
+            TypeCheckingEnvironment tenv = new TypeCheckingEnvironment();
             fenv.Check(tenv, fenv);
             return e.Check(tenv, fenv);
         }
@@ -37,7 +37,7 @@ namespace Expressions
             var labelMap = new Dictionary<String, String>();
             foreach (String funName in fenv.getFunctionNames())
                 labelMap.Add(funName, Label.Fresh());
-            CEnv cenv = new CEnv(labelMap);
+            CompilationEnvironment cenv = new CompilationEnvironment(labelMap);
 
             // Compile expression
             e.Compile(cenv, gen);
@@ -47,7 +47,7 @@ namespace Expressions
             // Compile functions
             foreach (FuncDef f in fenv.getFunctions())
             {
-                cenv = new CEnv(labelMap);
+                cenv = new CompilationEnvironment(labelMap);
                 f.Compile(gen, cenv);
             }
 

@@ -8,12 +8,12 @@ namespace Expressions
     /// An implicit map from string to offset (distance from stack top)
     /// The environment is a stack because of nested scopes
     /// </summary>
-    public class CEnv
+    public class CompilationEnvironment
     {
         private readonly Stack<string> locals;
         private Dictionary<string, string> labelMap;
 
-        public CEnv(Dictionary<string, string> labelMap)
+        public CompilationEnvironment(Dictionary<string, string> labelMap)
         {
             locals = new Stack<string>();
             this.labelMap = labelMap;

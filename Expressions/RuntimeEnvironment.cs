@@ -8,11 +8,11 @@ namespace Expressions
     /// Map a variable name to a Storage object that can hold an int
     /// The environment is a stack because of nested scopes
     /// </summary>
-    public class REnv
+    public class RuntimeEnvironment
     {
         private readonly Stack<Tuple<string, Storage>> locals;
 
-        public REnv()
+        public RuntimeEnvironment()
         {
             locals = new Stack<Tuple<string, Storage>>();
         }

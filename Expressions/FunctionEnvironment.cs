@@ -6,19 +6,19 @@ namespace Expressions
     /// <summary>
     /// Function environment. Keeps track of the functions defined in a given context. 
     /// </summary>
-    public class FEnv
+    public class FunctionEnvironment
     {
         private Dictionary<string, FuncDef> functions;
 
-        public FEnv(Dictionary<string, FuncDef> functions)
+        public FunctionEnvironment(Dictionary<string, FuncDef> functions)
         {
             this.functions = functions;
         }
 
-        public void Check(TEnv env, FEnv fEnv)
+        public void Check(TypeCheckingEnvironment typeCheckingEnvironment, FunctionEnvironment functionEnvironment)
         {
             foreach (FuncDef f in functions.Values)
-                f.Check(env, fEnv);
+                f.Check(typeCheckingEnvironment, functionEnvironment);
         }
 
         public FuncDef getFunction(String name)

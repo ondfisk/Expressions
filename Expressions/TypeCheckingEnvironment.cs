@@ -8,11 +8,11 @@ namespace Expressions
     /// Map a variable name to a Type
     /// The environment is a stack because of a nested scopes
     /// </summary>
-    public class TEnv
+    public class TypeCheckingEnvironment
     {
         private readonly Stack<Tuple<string, Type>> locals;
 
-        public TEnv()
+        public TypeCheckingEnvironment()
         {
             locals = new Stack<Tuple<string, Type>>();
         }

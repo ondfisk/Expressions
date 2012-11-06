@@ -43,12 +43,12 @@
   <ItemGroup>
     <Compile Include="BinaryOperator.cs" />
     <Compile Include="Call.cs" />
-    <Compile Include="CEnv.cs" />
+    <Compile Include="CompilationEnvironment.cs" />
     <Compile Include="Constant.cs" />
     <Compile Include="CSTI.cs" />
     <Compile Include="Expression.cs" />
     <Compile Include="RET.cs" />
-    <Compile Include="FEnv.cs" />
+    <Compile Include="FunctionEnvironment.cs" />
     <Compile Include="FunctionCall.cs" />
     <Compile Include="FuncDef.cs" />
     <Compile Include="Generator.cs" />
@@ -67,12 +67,12 @@
     <Compile Include="PrimitiveType.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="REnv.cs" />
+    <Compile Include="RuntimeEnvironment.cs" />
     <Compile Include="Scanner.cs" />
     <Compile Include="SimpleInstruction.cs" />
     <Compile Include="Storage.cs" />
     <Compile Include="TCALL.cs" />
-    <Compile Include="TEnv.cs" />
+    <Compile Include="TypeCheckingEnvironment.cs" />
     <Compile Include="Type.cs" />
     <Compile Include="UnOp.cs" />
     <Compile Include="Variable.cs" />

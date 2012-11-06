@@ -5,8 +5,8 @@ namespace Expressions
     /// </summary>
     public abstract class Expression
     {
-        abstract public int Eval(REnv runtimeEnvironment, FEnv functionEnvironment);
-        abstract public Type Check(TEnv typeCheckingEnvironment, FEnv functionEnvironment);
-        abstract public void Compile(CEnv env, Generator gen);
+        abstract public int Eval(RuntimeEnvironment runtimeEnvironment, FunctionEnvironment functionEnvironment);
+        abstract public Type Check(TypeCheckingEnvironment typeCheckingEnvironment, FunctionEnvironment functionEnvironment);
+        abstract public void Compile(CompilationEnvironment env, Generator gen);
     }
 }

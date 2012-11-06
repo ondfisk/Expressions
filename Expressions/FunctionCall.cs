@@ -16,7 +16,7 @@ namespace Expressions
             _arg = arg;
         }
 
-        public override Type Check(TEnv typeCheckingEnvironment, FEnv functionEnvironment)
+        public override Type Check(TypeCheckingEnvironment typeCheckingEnvironment, FunctionEnvironment functionEnvironment)
         {
             var argumentType = _arg.Check(typeCheckingEnvironment, functionEnvironment);
             var function = functionEnvironment.getFunction(_name);
@@ -27,14 +27,14 @@ namespace Expressions
             throw new InvalidOperationException(string.Format("Type error in call of function {0}", _name));
         }
 
-        public override int Eval(REnv runtimeEnvironment, FEnv functionEnvironment)
+        public override int Eval(RuntimeEnvironment runtimeEnvironment, FunctionEnvironment functionEnvironment)
         {
             var argumentValue = _arg.Eval(runtimeEnvironment, functionEnvironment);
             var function = functionEnvironment.getFunction(_name);
             return function.Eval(runtimeEnvironment, functionEnvironment, argumentValue);
         }
 
-        public override void Compile(CEnv env, Generator gen)
+        public override void Compile(CompilationEnvironment env, Generator gen)
         {
             _arg.Compile(env, gen);
             var label = env.getFunctionLabel(_name);
