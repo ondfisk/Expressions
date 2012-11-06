@@ -11,7 +11,7 @@ namespace Expressions
             get { return _name; }
         }
 
-        public PrimitiveType(String name)
+        public PrimitiveType(string name)
         {
             _name = name;
         }

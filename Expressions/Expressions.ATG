@@ -27,15 +27,15 @@ IGNORE cr + lf + tab
 PRODUCTIONS
 
 /*------------------------------------------------------------------------*/
-Program<out Program p>     (. p = null; FunctionDefinition f = null; String name = null; Expression e = null;
-                                   Dictionary<String,FunctionDefinition> functions = new Dictionary<string, FunctionDefinition>(); .)
+Program<out Program p>     (. p = null; FunctionDefinition f = null; string name = null; Expression e = null;
+                                   Dictionary<string, FunctionDefinition> functions = new Dictionary<string, FunctionDefinition>(); .)
 = {
 	FunctionDefinition<out f, out name>  (. functions.Add(name, f); .)
    }
    Expr<out e> (. p = new Program(functions, e); .)
 .
 
-FunctionDefinition<out FunctionDefinition f, out String name> (. f = null; String an = null; Expression e = null;
+FunctionDefinition<out FunctionDefinition f, out string name> (. f = null; String an = null; Expression e = null;
                                                                                Type at = null; Type rt = null;.)
 = TypeExpr<out rt> Ident<out name> '(' 
        TypeExpr<out at> Ident<out an> ')' '=' 
@@ -116,7 +116,7 @@ AddOp<out Operator op>     (. op = Operator.Bad; .)
 .
 
 /*------------------------------------------------------------------------*/
-Factor<out Expression e>   (. String name; Expression e1; e = null; .)
+Factor<out Expression e>   (. string name; Expression e1; e = null; .)
 = ( Ident<out name>             (. e = new Variable(name); .)
      [ 
         '(' Expr<out e1> ')' (. e = new FunctionCall(name, e1); .)
@@ -136,7 +136,7 @@ MulOp<out Operator op>     (. op = Operator.Bad; .)
 .
 
 /*------------------------------------------------------------------------*/
-Ident<out String name>
+Ident<out string name>
 = ident                    (. name = t.val; .)
 .
 

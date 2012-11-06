@@ -88,8 +88,8 @@ public Program program;
 
 	
 	void Program(out Program p) {
-		p = null; FunctionDefinition f = null; String name = null; Expression e = null;
-		    Dictionary<String,FunctionDefinition> functions = new Dictionary<string, FunctionDefinition>(); 
+		p = null; FunctionDefinition f = null; string name = null; Expression e = null;
+		    Dictionary<string, FunctionDefinition> functions = new Dictionary<string, FunctionDefinition>(); 
 		while (la.kind == 7 || la.kind == 8) {
 			FunctionDefinition(out f, out name);
 			functions.Add(name, f); 
@@ -98,7 +98,7 @@ public Program program;
 		p = new Program(functions, e); 
 	}
 
-	void FunctionDefinition(out FunctionDefinition f, out String name) {
+	void FunctionDefinition(out FunctionDefinition f, out string name) {
 		f = null; String an = null; Expression e = null;
 		             Type at = null; Type rt = null;
 		TypeExpr(out rt);
@@ -135,7 +135,7 @@ public Program program;
 		} else SynErr(22);
 	}
 
-	void Ident(out String name) {
+	void Ident(out string name) {
 		Expect(1);
 		name = t.val; 
 	}
@@ -245,7 +245,7 @@ public Program program;
 	}
 
 	void Factor(out Expression e) {
-		String name; Expression e1; e = null; 
+		string name; Expression e1; e = null; 
 		if (la.kind == 1) {
 			Ident(out name);
 			e = new Variable(name); 

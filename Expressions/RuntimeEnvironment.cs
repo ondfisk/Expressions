@@ -36,7 +36,7 @@ namespace Expressions
             _locals.Push(Tuple.Create(name, new Storage()));
         }
 
-        public void PopEnvironment()
+        public void Pop()
         {
             _locals.Pop();
         }

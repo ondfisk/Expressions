@@ -21,38 +21,38 @@ namespace Expressions
 
         public int Eval()
         {
-            var renv = new RuntimeEnvironment();
-            return _expression.Eval(renv, _functionEnvironment);
+            var runtimeEnvironment = new RuntimeEnvironment();
+            return _expression.Eval(runtimeEnvironment, _functionEnvironment);
         }
 
         public Type Check()
         {
-            var tenv = new TypeCheckingEnvironment();
-            _functionEnvironment.Check(tenv, _functionEnvironment);
-            return _expression.Check(tenv, _functionEnvironment);
+            var typeCheckingEnvironment = new TypeCheckingEnvironment();
+            _functionEnvironment.Check(typeCheckingEnvironment, _functionEnvironment);
+            return _expression.Check(typeCheckingEnvironment, _functionEnvironment);
         }
 
-        public void Compile(Generator gen, String outputFile)
+        public void Compile(Generator generator, string outputFile)
         {
             // Generate compiletime environment
             var labels = _functionEnvironment.GetFunctionNames().ToDictionary(funName => funName, funName => Label.Fresh());
             var compilationEnvironment = new CompilationEnvironment(labels);
 
             // Compile expression
-            _expression.Compile(compilationEnvironment, gen);
-            gen.Emit(Instruction.PrintI);
-            gen.Emit(Instruction.Stop);
+            _expression.Compile(compilationEnvironment, generator);
+            generator.Emit(Instruction.PrintI);
+            generator.Emit(Instruction.Stop);
 
             // Compile functions
             foreach (var functionDefinition in _functionEnvironment.GetFunctions())
             {
                 compilationEnvironment = new CompilationEnvironment(labels);
-                functionDefinition.Compile(gen, compilationEnvironment);
+                functionDefinition.Compile(generator, compilationEnvironment);
             }
 
             //  Generate bytecode at and print to file
-            gen.PrintCode();
-            var bytecode = gen.ToBytecode();
+            generator.PrintCode();
+            var bytecode = generator.ToBytecode();
             using (TextWriter writer = new StreamWriter(outputFile))
             {
                 foreach (var b in bytecode)

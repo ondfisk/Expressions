@@ -10,34 +10,38 @@ namespace Expressions
     /// </summary>
     public class TypeCheckingEnvironment
     {
-        private readonly Stack<Tuple<string, Type>> locals;
+        private readonly Stack<Tuple<string, Type>> _locals;
 
         public TypeCheckingEnvironment()
         {
-            locals = new Stack<Tuple<string, Type>>();
+            _locals = new Stack<Tuple<string, Type>>();
         }
 
-        public void PushEnv()
+        public void Push()
         {
-            locals.Push(new Tuple<string, Type>(null, null));
+            _locals.Push(new Tuple<string, Type>(null, null));
         }
 
-        public void PopEnv()
+        public void Pop()
         {
-            locals.Pop();
+            _locals.Pop();
         }
 
-        public void DeclareLocal(String name, Type type)
+        public void DeclareLocal(string name, Type type)
         {
-            locals.Push(new Tuple<String, Type>(name, type));
+            _locals.Push(new Tuple<string, Type>(name, type));
         }
 
-        public Type GetVariable(String name)
+        public Type GetVariable(string name)
         {
-            foreach (Tuple<String, Type> variable in locals)
+            foreach (var variable in _locals)
+            {
                 if (variable.Item1 == name)
+                {
                     return variable.Item2;
-            throw new Exception("Unbound variable: " + name);
+                }
+            }
+            throw new InvalidOperationException("Unbound variable: " + name);
         }
     }
 }

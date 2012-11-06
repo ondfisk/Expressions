@@ -4,9 +4,9 @@ namespace Expressions
 {
     public class Variable : Expression
     {
-        private readonly String name;
+        private readonly string name;
 
-        public Variable(String name)
+        public Variable(string name)
         {
             this.name = name;
         }

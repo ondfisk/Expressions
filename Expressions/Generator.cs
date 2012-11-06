@@ -20,7 +20,7 @@ namespace Expressions
             _instructions.Add(instr);
         }
 
-        public void Label(String label)
+        public void Label(string label)
         {
             _instructions.Add(new Label(label));
         }

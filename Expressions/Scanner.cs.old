@@ -103,7 +103,7 @@ public class Buffer {
 		Pos = beg;
 		while (Pos < end) buf[len++] = (char) Read();
 		Pos = oldPos;
-		return new String(buf, 0, len);
+		return new string(buf, 0, len);
 	}
 
 	public int Pos {

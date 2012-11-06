@@ -23,7 +23,7 @@ namespace Expressions
             _labels = labels;
         }
 
-        public void PopEnvironment()
+        public void Pop()
         {
             _locals.Pop();
         }
@@ -47,7 +47,7 @@ namespace Expressions
             }
         }
 
-        public void CompileVariable(Generator gen, String name)
+        public void CompileVariable(Generator gen, string name)
         {
             var offset = 0;
             foreach (var variableName in _locals)

@@ -29,7 +29,7 @@ namespace Expressions
         {
             typeCheckingEnvironment.DeclareLocal(_argument.Item1, _argument.Item2);
             var t = _body.Check(typeCheckingEnvironment, functionEnvironment);
-            typeCheckingEnvironment.PopEnv();
+            typeCheckingEnvironment.Pop();
             if (t != _returnType)
             {
                 throw new InvalidOperationException(string.Format("Body of {0} returns {1}, {2} expected", _name, t, _returnType));
@@ -41,7 +41,7 @@ namespace Expressions
             runtimeEnvironment.AllocateLocal(_argument.Item1);
             runtimeEnvironment.GetVariable(_argument.Item1).Value = argument;
             var v = _body.Eval(runtimeEnvironment, functionEnvironment);
-            runtimeEnvironment.PopEnvironment();
+            runtimeEnvironment.Pop();
             return v;
         }
 

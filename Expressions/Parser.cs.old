@@ -88,7 +88,7 @@ public Program program;
 
 	
 	void Program(out Program p) {
-		p = null; FunctionDefinition f = null; String name = null; Expression e = null;
+		p = null; FunctionDefinition f = null; string name = null; Expression e = null;
 		    Dictionary<String,FunctionDefinition> functions = new Dictionary<string, FunctionDefinition>(); 
 		while (la.kind == 7 || la.kind == 8) {
 			FunctionDefinition(out f, out name);
@@ -258,7 +258,7 @@ public Program program;
 		} else if (la.kind == 2) {
 			Get();
 			e = new Constant(Convert.ToInt32(t.val), 
-			                Type.intType); 
+			                Type.IntegerType); 
 		} else if (la.kind == 18) {
 			Get();
 			Factor(out e1);
