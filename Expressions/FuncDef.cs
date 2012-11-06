@@ -25,7 +25,7 @@ namespace Expressions
             Type t = body.Check(env, fEnv);
             env.PopEnv();
             if (t != returnType)
-                throw new TypeException("Body of " + fName + " returns " + t + ", " + returnType + " expected");
+                throw new InvalidOperationException("Body of " + fName + " returns " + t + ", " + returnType + " expected");
         }
 
         public int Eval(REnv env, FEnv fenv, int arg)

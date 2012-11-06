@@ -36,12 +36,12 @@ namespace Expressions
                     if (t1 == Type.intType)
                         return Type.intType;
                     else
-                        throw new TypeException("Argument to - must be int");
+                        throw new InvalidOperationException("Argument to - must be int");
                 case Operator.Not:
                     if (t1 == Type.boolType)
                         return Type.boolType;
                     else
-                        throw new TypeException("Argument to ! must be bool");
+                        throw new InvalidOperationException("Argument to ! must be bool");
                 default:
                     throw new Exception("Unknown unary operator: " + op);
             }

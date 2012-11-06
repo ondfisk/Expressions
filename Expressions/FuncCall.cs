@@ -22,7 +22,7 @@ namespace Expressions
             if (fDef.CheckArgType(argType))
                 return fDef.returnType;
             else
-                throw new TypeException("Type error in call of function " + fName);
+                throw new InvalidOperationException("Type error in call of function " + fName);
         }
 
         public override int Eval(REnv env, FEnv fenv)

@@ -75,7 +75,6 @@
     <Compile Include="TCALL.cs" />
     <Compile Include="TEnv.cs" />
     <Compile Include="Type.cs" />
-    <Compile Include="TypeException.cs" />
     <Compile Include="UnOp.cs" />
     <Compile Include="Variable.cs" />
   </ItemGroup>

@@ -65,7 +65,7 @@ namespace Expressions
                     {
                         return Type.intType;
                     }
-                    throw new TypeException("Arguments to + - * / must be int");
+                    throw new InvalidOperationException("Arguments to + - * / must be int");
                 case Operator.Eq:
                 case Operator.Ge:
                 case Operator.Gt:
@@ -76,14 +76,14 @@ namespace Expressions
                     {
                         return Type.boolType;
                     }
-                    throw new TypeException("Arguments to == >= > <= < != must be int");
+                    throw new InvalidOperationException("Arguments to == >= > <= < != must be int");
                 case Operator.Or:
                 case Operator.And:
                     if (t1 == Type.boolType && t2 == Type.boolType)
                     {
                         return Type.boolType;
                     }
-                    throw new TypeException("Arguments to & must be bool");
+                    throw new InvalidOperationException("Arguments to & must be bool");
                 default: 
                     throw new InvalidOperationException(string.Format("Unknown binary operator: {0}", _op));
             }
