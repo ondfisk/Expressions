@@ -10,26 +10,26 @@ namespace Expressions
     /// </summary>
     public class REnv
     {
-        private readonly Stack<Pair<string, Storage>> locals;
+        private readonly Stack<Tuple<string, Storage>> locals;
 
         public REnv()
         {
-            locals = new Stack<Pair<string, Storage>>();
+            locals = new Stack<Tuple<string, Storage>>();
         }
 
         // Find variable in innermost local scope
         public Storage GetVariable(String name)
         {
-            foreach (Pair<String, Storage> variable in locals)
-                if (variable.Fst == name)
-                    return variable.Snd;
+            foreach (Tuple<String, Storage> variable in locals)
+                if (variable.Item1 == name)
+                    return variable.Item2;
             throw new Exception("Unbound variable: " + name);
         }
 
         // Allocate variable
         public void AllocateLocal(String name)
         {
-            locals.Push(new Pair<String, Storage>(name, new Storage()));
+            locals.Push(new Tuple<String, Storage>(name, new Storage()));
         }
 
         public void PopEnv()

@@ -10,16 +10,16 @@ namespace Expressions
     /// </summary>
     public class TEnv
     {
-        private readonly Stack<Pair<string, Type>> locals;
+        private readonly Stack<Tuple<string, Type>> locals;
 
         public TEnv()
         {
-            locals = new Stack<Pair<string, Type>>();
+            locals = new Stack<Tuple<string, Type>>();
         }
 
         public void PushEnv()
         {
-            locals.Push(new Pair<string, Type>());
+            locals.Push(new Tuple<string, Type>(null, null));
         }
 
         public void PopEnv()
@@ -29,14 +29,14 @@ namespace Expressions
 
         public void DeclareLocal(String name, Type type)
         {
-            locals.Push(new Pair<String, Type>(name, type));
+            locals.Push(new Tuple<String, Type>(name, type));
         }
 
         public Type GetVariable(String name)
         {
-            foreach (Pair<String, Type> variable in locals)
-                if (variable.Fst == name)
-                    return variable.Snd;
+            foreach (Tuple<String, Type> variable in locals)
+                if (variable.Item1 == name)
+                    return variable.Item2;
             throw new Exception("Unbound variable: " + name);
         }
     }
