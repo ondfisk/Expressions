@@ -4,28 +4,33 @@ namespace Expressions
 {
     public class IntArgInstr : Instruction
     {
-        public readonly int argument;
-
-        public IntArgInstr(Opcode opcode, int argument)
-            : base(opcode)
-        {
-            this.argument = argument;
-        }
+        private readonly int _argument;
 
         public override int Size
         {
             get { return 2; }
         }
 
+        public int Argument
+        {
+            get { return _argument; }
+        }
+
+        public IntArgInstr(Opcode opcode, int argument)
+            : base(opcode)
+        {
+            _argument = argument;
+        }
+
         public override void ToBytecode(IDictionary<string, int> labelMap, List<int> bytecode)
         {
             bytecode.Add((int)Opcode);
-            bytecode.Add(argument);
+            bytecode.Add(_argument);
         }
 
         public override string ToString()
         {
-            return base.ToString() + " " + argument.ToString();
+            return string.Join(" ", base.ToString(), _argument);
         }
     }
 }
