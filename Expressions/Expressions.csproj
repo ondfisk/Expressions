@@ -14,19 +14,20 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>none</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\Output\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\Output\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -74,11 +75,10 @@
     <Compile Include="System\Type.cs" />
     <Compile Include="UnaryOperation.cs" />
     <Compile Include="Variable.cs" />
-    <Compile Include="$(IntermediateOutputPath)\Scanner.cs" />
-    <Compile Include="$(IntermediateOutputPath)\Parser.cs" />
+    <Compile Include="System\Scanner.cs" />
+    <Compile Include="System\Parser.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="Expressions.ATG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -90,8 +90,8 @@
   </Target>
   -->
   <Target Name="BeforeBuild">
-    <Delete Files="$(IntermediateOutputPath)\Scanner.cs" Condition="Exists('$(IntermediateOutputPath)\Scanner.cs')" />
-    <Delete Files="$(IntermediateOutputPath)\Parser.cs" Condition="Exists('$(IntermediateOutputPath)\Parser.cs')" />
-    <Exec Command=".\System\Coco.exe Expressions.ATG -namespace Expressions -o $(IntermediateOutputPath) -frames System" />
+    <Delete Files=".\System\Scanner.cs" Condition="Exists('.\System\Scanner.cs')" />
+    <Delete Files=".\System\Parser.cs" Condition="Exists('.\System\Parser.cs')" />
+    <Exec Command=".\System\Coco.exe Expressions.ATG -namespace Expressions -o .\System -frames .\System" />
   </Target>
 </Project>
