@@ -1,5 +1,3 @@
-using System;
-
 namespace Expressions
 {
     public class PrimitiveType : Type
