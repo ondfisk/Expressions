@@ -34,7 +34,7 @@ namespace Expressions
             {
                 if (instr is Label)
                 {
-                    labels.Add((instr as Label).name, address);
+                    labels.Add((instr as Label).Name, address);
                 }
                 else
                 {
