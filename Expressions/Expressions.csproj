@@ -41,10 +41,43 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Expressions.cs" />
+    <Compile Include="BinOp.cs" />
+    <Compile Include="CALL.cs" />
+    <Compile Include="CEnv.cs" />
+    <Compile Include="Constant.cs" />
+    <Compile Include="CSTI.cs" />
+    <Compile Include="Expression.cs" />
+    <Compile Include="RET.cs" />
+    <Compile Include="FEnv.cs" />
+    <Compile Include="FuncCall.cs" />
+    <Compile Include="FuncDef.cs" />
+    <Compile Include="Generator.cs" />
+    <Compile Include="GOTO.cs" />
+    <Compile Include="IFNZRO.cs" />
+    <Compile Include="IFZERO.cs" />
+    <Compile Include="INCSP.cs" />
+    <Compile Include="Instruction.cs" />
+    <Compile Include="IntArgInstr.cs" />
+    <Compile Include="JumpInstruction.cs" />
+    <Compile Include="Label.cs" />
+    <Compile Include="MainProgram.cs" />
+    <Compile Include="Opcode.cs" />
+    <Compile Include="Operator.cs" />
+    <Compile Include="Pair.cs" />
     <Compile Include="Parser.cs" />
+    <Compile Include="PrimitiveType.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="REnv.cs" />
     <Compile Include="Scanner.cs" />
+    <Compile Include="SimpleInstruction.cs" />
+    <Compile Include="Storage.cs" />
+    <Compile Include="TCALL.cs" />
+    <Compile Include="TEnv.cs" />
+    <Compile Include="Type.cs" />
+    <Compile Include="TypeException.cs" />
+    <Compile Include="UnOp.cs" />
+    <Compile Include="Variable.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
