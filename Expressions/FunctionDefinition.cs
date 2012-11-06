@@ -39,7 +39,7 @@ namespace Expressions
         public int Eval(RuntimeEnvironment runtimeEnvironment, FunctionEnvironment functionEnvironment, int argument)
         {
             runtimeEnvironment.AllocateLocal(_argument.Item1);
-            runtimeEnvironment.GetVariable(_argument.Item1).value = argument;
+            runtimeEnvironment.GetVariable(_argument.Item1).Value = argument;
             var v = _body.Eval(runtimeEnvironment, functionEnvironment);
             runtimeEnvironment.PopEnvironment();
             return v;

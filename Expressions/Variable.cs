@@ -13,7 +13,7 @@ namespace Expressions
 
         public override int Eval(RuntimeEnvironment runtimeEnvironment, FunctionEnvironment functionEnvironment)
         {
-            return runtimeEnvironment.GetVariable(name).value;
+            return runtimeEnvironment.GetVariable(name).Value;
         }
 
         public override Type Check(TypeCheckingEnvironment typeCheckingEnvironment, FunctionEnvironment functionEnvironment)
