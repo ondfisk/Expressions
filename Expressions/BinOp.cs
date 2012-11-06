@@ -4,21 +4,22 @@ namespace Expressions
 {
     public class BinOp : Expression
     {
-        private readonly Operator op;
-        private readonly Expression e1, e2;
+        private readonly Operator _op;
+        private readonly Expression _e1, _e2;
 
         public BinOp(Operator op, Expression e1, Expression e2)
         {
-            this.op = op;
-            this.e1 = e1;
-            this.e2 = e2;
+            _op = op;
+            _e1 = e1;
+            _e2 = e2;
         }
 
         public override int Eval(REnv env, FEnv fEnv)
         {
-            int v1 = e1.Eval(env, fEnv);
-            int v2 = e2.Eval(env, fEnv);
-            switch (op)
+            var v1 = _e1.Eval(env, fEnv);
+            var v2 = _e2.Eval(env, fEnv);
+
+            switch (_op)
             {
                 case Operator.Add:
                     return v1 + v2;
@@ -45,24 +46,26 @@ namespace Expressions
                 case Operator.Or:
                     return v1 == 0 ? v2 : 1;
                 default:
-                    throw new Exception("Unknown binary operator: " + op);
+                    throw new InvalidOperationException(string.Format("Unknown binary operator: {0}", _op));
             }
         }
 
         public override Type Check(TEnv env, FEnv fEnv)
         {
-            Type t1 = e1.Check(env, fEnv);
-            Type t2 = e2.Check(env, fEnv);
-            switch (op)
+            var t1 = _e1.Check(env, fEnv);
+            var t2 = _e2.Check(env, fEnv);
+
+            switch (_op)
             {
                 case Operator.Add:
                 case Operator.Div:
                 case Operator.Mul:
                 case Operator.Sub:
                     if (t1 == Type.intType && t2 == Type.intType)
+                    {
                         return Type.intType;
-                    else
-                        throw new TypeException("Arguments to + - * / must be int");
+                    }
+                    throw new TypeException("Arguments to + - * / must be int");
                 case Operator.Eq:
                 case Operator.Ge:
                 case Operator.Gt:
@@ -70,26 +73,29 @@ namespace Expressions
                 case Operator.Lt:
                 case Operator.Ne:
                     if (t1 == Type.intType && t2 == Type.intType)
+                    {
                         return Type.boolType;
-                    else
-                        throw new TypeException("Arguments to == >= > <= < != must be int");
+                    }
+                    throw new TypeException("Arguments to == >= > <= < != must be int");
                 case Operator.Or:
                 case Operator.And:
                     if (t1 == Type.boolType && t2 == Type.boolType)
+                    {
                         return Type.boolType;
-                    else
-                        throw new TypeException("Arguments to & must be bool");
-                default:
-                    throw new Exception("Unknown binary operator: " + op);
+                    }
+                    throw new TypeException("Arguments to & must be bool");
+                default: 
+                    throw new InvalidOperationException(string.Format("Unknown binary operator: {0}", _op));
             }
         }
 
         public override void Compile(CEnv env, Generator gen)
         {
-            e1.Compile(env, gen);
+            _e1.Compile(env, gen);
             env.PushTemporary();
-            e2.Compile(env, gen);
-            switch (op)
+            _e2.Compile(env, gen);
+
+            switch (_op)
             {
                 case Operator.Add:
                     gen.Emit(Instruction.ADD);
@@ -136,7 +142,7 @@ namespace Expressions
                     gen.Emit(Instruction.NOT);
                     break;
                 default:
-                    throw new Exception("Unknown binary operator: " + op);
+                    throw new InvalidOperationException(string.Format("Unknown binary operator: {0}", _op));
             }
             env.PopTemporary();
         }
