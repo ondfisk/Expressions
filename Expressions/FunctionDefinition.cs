@@ -41,7 +41,7 @@ namespace Expressions
             runtimeEnvironment.AllocateLocal(_argument.Item1);
             runtimeEnvironment.GetVariable(_argument.Item1).value = argument;
             var v = _body.Eval(runtimeEnvironment, functionEnvironment);
-            runtimeEnvironment.PopEnv();
+            runtimeEnvironment.PopEnvironment();
             return v;
         }
 

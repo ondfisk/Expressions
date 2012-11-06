@@ -10,31 +10,35 @@ namespace Expressions
     /// </summary>
     public class RuntimeEnvironment
     {
-        private readonly Stack<Tuple<string, Storage>> locals;
+        private readonly Stack<Tuple<string, Storage>> _locals;
 
         public RuntimeEnvironment()
         {
-            locals = new Stack<Tuple<string, Storage>>();
+            _locals = new Stack<Tuple<string, Storage>>();
         }
 
         // Find variable in innermost local scope
-        public Storage GetVariable(String name)
+        public Storage GetVariable(string name)
         {
-            foreach (Tuple<String, Storage> variable in locals)
+            foreach (var variable in _locals)
+            {
                 if (variable.Item1 == name)
+                {
                     return variable.Item2;
-            throw new Exception("Unbound variable: " + name);
+                }
+            }
+            throw new InvalidOperationException("Unbound variable: " + name);
         }
 
         // Allocate variable
-        public void AllocateLocal(String name)
+        public void AllocateLocal(string name)
         {
-            locals.Push(new Tuple<String, Storage>(name, new Storage()));
+            _locals.Push(Tuple.Create(name, new Storage()));
         }
 
-        public void PopEnv()
+        public void PopEnvironment()
         {
-            locals.Pop();
+            _locals.Pop();
         }
     }
 }
