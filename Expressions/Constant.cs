@@ -11,12 +11,12 @@ namespace Expressions
             this.type = type;
         }
 
-        public override int Eval(REnv env, FEnv fEnv)
+        public override int Eval(REnv runtimeEnvironment, FEnv functionEnvironment)
         {
             return value;
         }
 
-        public override Type Check(TEnv env, FEnv fEnv)
+        public override Type Check(TEnv typeCheckingEnvironment, FEnv functionEnvironment)
         {
             return type;
         }

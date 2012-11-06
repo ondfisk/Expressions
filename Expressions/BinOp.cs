@@ -14,10 +14,10 @@ namespace Expressions
             _e2 = e2;
         }
 
-        public override int Eval(REnv env, FEnv fEnv)
+        public override int Eval(REnv runtimeEnvironment, FEnv functionEnvironment)
         {
-            var v1 = _e1.Eval(env, fEnv);
-            var v2 = _e2.Eval(env, fEnv);
+            var v1 = _e1.Eval(runtimeEnvironment, functionEnvironment);
+            var v2 = _e2.Eval(runtimeEnvironment, functionEnvironment);
 
             switch (_op)
             {
@@ -50,10 +50,10 @@ namespace Expressions
             }
         }
 
-        public override Type Check(TEnv env, FEnv fEnv)
+        public override Type Check(TEnv typeCheckingEnvironment, FEnv functionEnvironment)
         {
-            var t1 = _e1.Check(env, fEnv);
-            var t2 = _e2.Check(env, fEnv);
+            var t1 = _e1.Check(typeCheckingEnvironment, functionEnvironment);
+            var t2 = _e2.Check(typeCheckingEnvironment, functionEnvironment);
 
             switch (_op)
             {

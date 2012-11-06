@@ -42,14 +42,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BinOp.cs" />
-    <Compile Include="CALL.cs" />
+    <Compile Include="Call.cs" />
     <Compile Include="CEnv.cs" />
     <Compile Include="Constant.cs" />
     <Compile Include="CSTI.cs" />
     <Compile Include="Expression.cs" />
     <Compile Include="RET.cs" />
     <Compile Include="FEnv.cs" />
-    <Compile Include="FuncCall.cs" />
+    <Compile Include="FunctionCall.cs" />
     <Compile Include="FuncDef.cs" />
     <Compile Include="Generator.cs" />
     <Compile Include="GOTO.cs" />

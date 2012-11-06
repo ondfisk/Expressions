@@ -11,14 +11,14 @@ namespace Expressions
             this.name = name;
         }
 
-        public override int Eval(REnv env, FEnv fEnv)
+        public override int Eval(REnv runtimeEnvironment, FEnv functionEnvironment)
         {
-            return env.GetVariable(name).value;
+            return runtimeEnvironment.GetVariable(name).value;
         }
 
-        public override Type Check(TEnv env, FEnv fEnv)
+        public override Type Check(TEnv typeCheckingEnvironment, FEnv functionEnvironment)
         {
-            return env.GetVariable(name);
+            return typeCheckingEnvironment.GetVariable(name);
         }
 
         public override void Compile(CEnv env, Generator gen)

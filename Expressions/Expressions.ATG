@@ -119,7 +119,7 @@ AddOp<out Operator op>     (. op = Operator.Bad; .)
 Factor<out Expression e>   (. String name; Expression e1; e = null; .)
 = ( Ident<out name>             (. e = new Variable(name); .)
      [ 
-        '(' Expr<out e1> ')' (. e = new FuncCall(name, e1); .)
+        '(' Expr<out e1> ')' (. e = new FunctionCall(name, e1); .)
      ]
   | number                 (. e = new Constant(Convert.ToInt32(t.val), 
                                                Type.intType); .)

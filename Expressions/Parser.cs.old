@@ -253,7 +253,7 @@ public Program program;
 				Get();
 				Expr(out e1);
 				Expect(4);
-				e = new FunctionCall(name, e1); 
+				e = new FuncCall(name, e1); 
 			}
 		} else if (la.kind == 2) {
 			Get();

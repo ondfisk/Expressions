@@ -13,9 +13,9 @@ namespace Expressions
             this.e1 = e1;
         }
 
-        public override int Eval(REnv env, FEnv fEnv)
+        public override int Eval(REnv runtimeEnvironment, FEnv functionEnvironment)
         {
-            int v1 = e1.Eval(env, fEnv);
+            int v1 = e1.Eval(runtimeEnvironment, functionEnvironment);
             switch (op)
             {
                 case Operator.Not:
@@ -27,9 +27,9 @@ namespace Expressions
             }
         }
 
-        public override Type Check(TEnv env, FEnv fEnv)
+        public override Type Check(TEnv typeCheckingEnvironment, FEnv functionEnvironment)
         {
-            Type t1 = e1.Check(env, fEnv);
+            Type t1 = e1.Check(typeCheckingEnvironment, functionEnvironment);
             switch (op)
             {
                 case Operator.Neg:
