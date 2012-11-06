@@ -28,7 +28,7 @@ PRODUCTIONS
 
 /*------------------------------------------------------------------------*/
 Program<out Program p>     (. p = null; FunctionDefinition f = null; String name = null; Expression e = null;
-                                   Dictionary<string,FunctionDefinition> functions = new Dictionary<string, FunctionDefinition>(); .)
+                                   Dictionary<String,FunctionDefinition> functions = new Dictionary<string, FunctionDefinition>(); .)
 = {
 	FunctionDefinition<out f, out name>  (. functions.Add(name, f); .)
    }
@@ -52,7 +52,7 @@ TypeExpr<out Type t>  (. t = null; .)
 Expr<out Expression e>     (. Expression e1, e2; Operator op; e = null; .)
 = BoolTerm<out e1>          (. e = e1; .)
   { AndOp<out op>        
-    BoolTerm<out e2>        (. e = new BinaryOperator(op, e, e2); .)
+    BoolTerm<out e2>        (. e = new BinaryOperation(op, e, e2); .)
   }
 .
 
@@ -65,7 +65,7 @@ AndOp<out Operator op>  (. op = Operator.Bad; .)
 BoolTerm<out Expression e>     (. Expression e1, e2; Operator op; e = null; .)
 = SimBoolExpr<out e1>          (. e = e1; .)
   { OrOp<out op>        
-    SimBoolExpr<out e2>        (. e = new BinaryOperator(op, e, e2); .)
+    SimBoolExpr<out e2>        (. e = new BinaryOperation(op, e, e2); .)
   }
 .
 
@@ -77,7 +77,7 @@ OrOp<out Operator op>  (. op = Operator.Bad; .)
 SimBoolExpr<out Expression e>     (. Expression e1, e2; Operator op; e = null; .)
 = SimExpr<out e1>          (. e = e1; .)
   [ RelOp<out op>        
-    SimExpr<out e2>        (. e = new BinaryOperator(op, e, e2); .)
+    SimExpr<out e2>        (. e = new BinaryOperation(op, e, e2); .)
   ]
 .
 
@@ -85,7 +85,7 @@ SimBoolExpr<out Expression e>     (. Expression e1, e2; Operator op; e = null; .
 SimExpr<out Expression e>  (. Expression e1, e2; Operator op; .)
 = Term<out e1>             (. e = e1; .)
   { AddOp<out op>
-    Term<out e2>           (. e = new BinaryOperator(op, e, e2); .)
+    Term<out e2>           (. e = new BinaryOperation(op, e, e2); .)
 	}
 .
 
@@ -104,7 +104,7 @@ RelOp<out Operator op>     (. op = Operator.Bad; .)
 Term<out Expression e>     (. Operator op; Expression e1, e2; .)
 = Factor<out e1>           (. e = e1;                         .)
   { MulOp<out op>
-    Factor<out e2>         (. e = new BinaryOperator(op, e, e2);       .)
+    Factor<out e2>         (. e = new BinaryOperation(op, e, e2);       .)
 	}
 .
 

@@ -2,12 +2,12 @@ using System;
 
 namespace Expressions
 {
-    public class BinaryOperator : Expression
+    public class BinaryOperation : Expression
     {
         private readonly Operator _op;
         private readonly Expression _e1, _e2;
 
-        public BinaryOperator(Operator op, Expression e1, Expression e2)
+        public BinaryOperation(Operator op, Expression e1, Expression e2)
         {
             _op = op;
             _e1 = e1;

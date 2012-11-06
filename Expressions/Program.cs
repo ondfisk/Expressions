@@ -5,7 +5,7 @@ using System.IO;
 namespace Expressions
 {
     /// <summary>
-    /// Programs abstract syntax. A program consists of a term to be evaluated and a function environment in which it is evaluated
+    /// Programs abstract syntax. A Program consists of a term to be evaluated and a function environment in which it is evaluated
     /// </summary>
     public class Program
     {

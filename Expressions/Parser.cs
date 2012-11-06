@@ -89,7 +89,7 @@ public Program program;
 	
 	void Program(out Program p) {
 		p = null; FunctionDefinition f = null; String name = null; Expression e = null;
-		    Dictionary<string,FunctionDefinition> functions = new Dictionary<string, FunctionDefinition>(); 
+		    Dictionary<String,FunctionDefinition> functions = new Dictionary<string, FunctionDefinition>(); 
 		while (la.kind == 7 || la.kind == 8) {
 			FunctionDefinition(out f, out name);
 			functions.Add(name, f); 
@@ -120,7 +120,7 @@ public Program program;
 		while (la.kind == 9) {
 			AndOp(out op);
 			BoolTerm(out e2);
-			e = new BinaryOperator(op, e, e2); 
+			e = new BinaryOperation(op, e, e2); 
 		}
 	}
 
@@ -147,7 +147,7 @@ public Program program;
 		while (la.kind == 10) {
 			OrOp(out op);
 			SimBoolExpr(out e2);
-			e = new BinaryOperator(op, e, e2); 
+			e = new BinaryOperation(op, e, e2); 
 		}
 	}
 
@@ -164,7 +164,7 @@ public Program program;
 		if (StartOf(1)) {
 			RelOp(out op);
 			SimExpr(out e2);
-			e = new BinaryOperator(op, e, e2); 
+			e = new BinaryOperation(op, e, e2); 
 		}
 	}
 
@@ -181,7 +181,7 @@ public Program program;
 		while (la.kind == 17 || la.kind == 18) {
 			AddOp(out op);
 			Term(out e2);
-			e = new BinaryOperator(op, e, e2); 
+			e = new BinaryOperation(op, e, e2); 
 		}
 	}
 
@@ -229,7 +229,7 @@ public Program program;
 		while (la.kind == 19 || la.kind == 20) {
 			MulOp(out op);
 			Factor(out e2);
-			e = new BinaryOperator(op, e, e2);       
+			e = new BinaryOperation(op, e, e2);       
 		}
 	}
 

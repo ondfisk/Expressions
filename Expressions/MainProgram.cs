@@ -26,7 +26,7 @@ namespace Expressions
                         return;
                 }
             }
-            Console.WriteLine("Usage: Expressions <expression.txt> [run|check|compile]");
+            Console.WriteLine("Usage: Program <expression.txt> [run|check|compile]");
         }
     }
 }
