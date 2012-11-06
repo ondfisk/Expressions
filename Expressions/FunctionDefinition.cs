@@ -45,12 +45,12 @@ namespace Expressions
             return v;
         }
 
-        public void Compile(Generator gen, CompilationEnvironment env)
+        public void Compile(CompilationEnvironment compilationEnvironment, Generator generator)
         {
-            env.DeclareLocal(_argument.Item1); // Formal argument name points to top of stack
-            gen.Label(env.GetFunctionLabel(_name));
-            _body.Compile(env, gen);
-            gen.Emit(new Return(1));
+            compilationEnvironment.DeclareLocal(_argument.Item1); // Formal argument name points to top of stack
+            generator.Label(compilationEnvironment.GetFunctionLabel(_name));
+            _body.Compile(compilationEnvironment, generator);
+            generator.Emit(new Return(1));
         }
 
         public bool CheckArgType(Type argType)

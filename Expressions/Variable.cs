@@ -21,10 +21,10 @@ namespace Expressions
             return typeCheckingEnvironment.GetVariable(name);
         }
 
-        public override void Compile(CompilationEnvironment env, Generator gen)
+        public override void Compile(CompilationEnvironment compilationEnvironment, Generator generator)
         {
-            env.CompileVariable(gen, name);
-            gen.Emit(Instruction.LdI);
+            compilationEnvironment.CompileVariable(generator, name);
+            generator.Emit(Instruction.LdI);
         }
     }
 }

@@ -123,7 +123,7 @@ Factor<out Expression e>   (. string name; Expression e1; e = null; .)
      ]
   | number                 (. e = new Constant(Convert.ToInt32(t.val), 
                                                Type.IntegerType); .)
-  | '-' Factor<out e1>     (. e = new UnOp(Operator.Neg, e1); .)
+  | '-' Factor<out e1>     (. e = new UnaryOperation(Operator.Neg, e1); .)
   | '(' Expr<out e1> ')'   (. e = e1; .)
   )
 .

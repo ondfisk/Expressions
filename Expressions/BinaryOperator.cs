@@ -89,62 +89,62 @@ namespace Expressions
             }
         }
 
-        public override void Compile(CompilationEnvironment env, Generator gen)
+        public override void Compile(CompilationEnvironment compilationEnvironment, Generator generator)
         {
-            _e1.Compile(env, gen);
-            env.PushTemporary();
-            _e2.Compile(env, gen);
+            _e1.Compile(compilationEnvironment, generator);
+            compilationEnvironment.PushTemporary();
+            _e2.Compile(compilationEnvironment, generator);
 
             switch (_op)
             {
                 case Operator.Add:
-                    gen.Emit(Instruction.Add);
+                    generator.Emit(Instruction.Add);
                     break;
                 case Operator.Div:
-                    gen.Emit(Instruction.Div);
+                    generator.Emit(Instruction.Div);
                     break;
                 case Operator.Mul:
-                    gen.Emit(Instruction.Mul);
+                    generator.Emit(Instruction.Mul);
                     break;
                 case Operator.Sub:
-                    gen.Emit(Instruction.Sub);
+                    generator.Emit(Instruction.Sub);
                     break;
                 case Operator.Eq:
-                    gen.Emit(Instruction.Eq);
+                    generator.Emit(Instruction.Eq);
                     break;
                 case Operator.Ne:
-                    gen.Emit(Instruction.Eq);
-                    gen.Emit(Instruction.Not);
+                    generator.Emit(Instruction.Eq);
+                    generator.Emit(Instruction.Not);
                     break;
                 case Operator.Ge:
-                    gen.Emit(Instruction.LT);
-                    gen.Emit(Instruction.Not);
+                    generator.Emit(Instruction.LT);
+                    generator.Emit(Instruction.Not);
                     break;
                 case Operator.Gt:
-                    gen.Emit(Instruction.Swap);
-                    gen.Emit(Instruction.LT);
+                    generator.Emit(Instruction.Swap);
+                    generator.Emit(Instruction.LT);
                     break;
                 case Operator.Le:
-                    gen.Emit(Instruction.Swap);
-                    gen.Emit(Instruction.LT);
-                    gen.Emit(Instruction.Not);
+                    generator.Emit(Instruction.Swap);
+                    generator.Emit(Instruction.LT);
+                    generator.Emit(Instruction.Not);
                     break;
                 case Operator.Lt:
-                    gen.Emit(Instruction.LT);
+                    generator.Emit(Instruction.LT);
                     break;
                 case Operator.And:
-                    gen.Emit(Instruction.Mul);
+                    generator.Emit(Instruction.Mul);
                     break;
                 case Operator.Or:
-                    gen.Emit(Instruction.Add);
-                    gen.Emit(new CstI(0));
-                    gen.Emit(Instruction.Eq);
-                    gen.Emit(Instruction.Not);
+                    generator.Emit(Instruction.Add);
+                    generator.Emit(new CstI(0));
+                    generator.Emit(Instruction.Eq);
+                    generator.Emit(Instruction.Not);
                     break;
                 default:
                     throw new InvalidOperationException(string.Format("Unknown binary operator: {0}", _op));
             }
-            env.PopTemporary();
+            compilationEnvironment.PopTemporary();
         }
     }
 }

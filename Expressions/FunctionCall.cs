@@ -34,11 +34,11 @@ namespace Expressions
             return function.Eval(runtimeEnvironment, functionEnvironment, argumentValue);
         }
 
-        public override void Compile(CompilationEnvironment env, Generator gen)
+        public override void Compile(CompilationEnvironment compilationEnvironment, Generator generator)
         {
-            _arg.Compile(env, gen);
-            var label = env.GetFunctionLabel(_name);
-            gen.Emit(new Call(1, label));
+            _arg.Compile(compilationEnvironment, generator);
+            var label = compilationEnvironment.GetFunctionLabel(_name);
+            generator.Emit(new Call(1, label));
         }
     }
 }

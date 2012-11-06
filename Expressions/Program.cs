@@ -47,7 +47,7 @@ namespace Expressions
             foreach (var functionDefinition in _functionEnvironment.GetFunctions())
             {
                 compilationEnvironment = new CompilationEnvironment(labels);
-                functionDefinition.Compile(generator, compilationEnvironment);
+                functionDefinition.Compile(compilationEnvironment, generator);
             }
 
             //  Generate bytecode at and print to file

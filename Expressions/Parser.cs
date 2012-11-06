@@ -262,7 +262,7 @@ public Program program;
 		} else if (la.kind == 18) {
 			Get();
 			Factor(out e1);
-			e = new UnOp(Operator.Neg, e1); 
+			e = new UnaryOperation(Operator.Neg, e1); 
 		} else if (la.kind == 3) {
 			Get();
 			Expr(out e1);

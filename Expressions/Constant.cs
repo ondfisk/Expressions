@@ -21,9 +21,9 @@ namespace Expressions
             return _type;
         }
 
-        public override void Compile(CompilationEnvironment env, Generator gen)
+        public override void Compile(CompilationEnvironment compilationEnvironment, Generator generator)
         {
-            gen.Emit(new CstI(_value));
+            generator.Emit(new CstI(_value));
         }
     }
 }
