@@ -7,25 +7,25 @@ namespace Expressions
         private readonly Opcode _opcode;
 
         public static readonly Instruction
-            Add = new SimpleInstruction(Opcode.ADD),
-            Sub = new SimpleInstruction(Opcode.SUB),
-            Mul = new SimpleInstruction(Opcode.MUL),
-            Div = new SimpleInstruction(Opcode.DIV),
-            Mod = new SimpleInstruction(Opcode.MOD),
-            Eq = new SimpleInstruction(Opcode.EQ),
+            Add = new SimpleInstruction(Opcode.Add),
+            Sub = new SimpleInstruction(Opcode.Sub),
+            Mul = new SimpleInstruction(Opcode.Mul),
+            Div = new SimpleInstruction(Opcode.Div),
+            Mod = new SimpleInstruction(Opcode.Mod),
+            Eq = new SimpleInstruction(Opcode.Eq),
             LT = new SimpleInstruction(Opcode.LT),
-            Not = new SimpleInstruction(Opcode.NOT),
-            Dup = new SimpleInstruction(Opcode.DUP),
-            Swap = new SimpleInstruction(Opcode.SWAP),
-            LdI = new SimpleInstruction(Opcode.LDI),
-            StI = new SimpleInstruction(Opcode.STI),
-            GetBp = new SimpleInstruction(Opcode.GETBP),
-            GetSp = new SimpleInstruction(Opcode.GETSP),
-            PrintC = new SimpleInstruction(Opcode.PRINTC),
-            PrintI = new SimpleInstruction(Opcode.PRINTI),
-            Read = new SimpleInstruction(Opcode.READ),
-            LdArgs = new SimpleInstruction(Opcode.LDARGS),
-            Stop = new SimpleInstruction(Opcode.STOP);
+            Not = new SimpleInstruction(Opcode.Not),
+            Dup = new SimpleInstruction(Opcode.Dup),
+            Swap = new SimpleInstruction(Opcode.Swap),
+            LdI = new SimpleInstruction(Opcode.LdI),
+            StI = new SimpleInstruction(Opcode.StI),
+            GetBp = new SimpleInstruction(Opcode.GetBp),
+            GetSp = new SimpleInstruction(Opcode.GetSp),
+            PrintC = new SimpleInstruction(Opcode.PrintC),
+            PrintI = new SimpleInstruction(Opcode.PrintI),
+            Read = new SimpleInstruction(Opcode.Read),
+            LdArgs = new SimpleInstruction(Opcode.LdArgs),
+            Stop = new SimpleInstruction(Opcode.Stop);
 
         public Opcode Opcode
         {

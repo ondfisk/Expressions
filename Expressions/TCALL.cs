@@ -10,7 +10,7 @@ namespace Expressions
         public readonly String target;
 
         public TCALL(int argCount, int slideBy, String target)
-            : base(Opcode.TCALL)
+            : base(Opcode.TCall)
         {
             this.argCount = argCount;
             this.slideBy = slideBy;

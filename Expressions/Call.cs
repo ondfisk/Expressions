@@ -23,7 +23,7 @@ namespace Expressions
         }
 
         public Call(int argCount, string target)
-            : base(Opcode.CALL)
+            : base(Opcode.Call)
         {
             _argCount = argCount;
             _target = target;

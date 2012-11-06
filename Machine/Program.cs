@@ -14,7 +14,7 @@
 
       Program -trace <programfile> <arg1> <arg2> ...
  
-   The READ instruction will attempt to read from file a.in if it exists.
+   The Read instruction will attempt to read from file a.in if it exists.
 */
 
 using System;
@@ -39,12 +39,12 @@ namespace Machine
 
         public enum Opcode
         {
-            LABEL = -1, // Unused
-            CSTI, ADD, SUB, MUL, DIV, MOD, EQ, LT, NOT,
-            DUP, SWAP, LDI, STI, GETBP, GETSP, INCSP,
-            GOTO, IFZERO, IFNZRO, CALL, TCALL, RET,
-            PRINTI, PRINTC, READ, LDARGS,
-            STOP
+            Label = -1, // Unused
+            CstI, Add, Sub, Mul, Div, Mod, Eq, LT, Not,
+            Dup, Swap, LdI, StI, GetBp, GetSp, IncSp,
+            Goto, IfZero, IfNZero, Call, TCall, Ret,
+            PrintI, PrintC, Read, LdArgs,
+            Stop
         }
 
         // Read code from file and execute it
@@ -100,45 +100,45 @@ namespace Machine
                     PrintSpPc(s, bp, sp, p, pc);
                 switch ((Opcode)p[pc++])
                 {
-                    case Opcode.CSTI:
+                    case Opcode.CstI:
                         s[sp + 1] = p[pc++]; sp++; break;
-                    case Opcode.ADD:
+                    case Opcode.Add:
                         s[sp - 1] = s[sp - 1] + s[sp]; sp--; break;
-                    case Opcode.SUB:
+                    case Opcode.Sub:
                         s[sp - 1] = s[sp - 1] - s[sp]; sp--; break;
-                    case Opcode.MUL:
+                    case Opcode.Mul:
                         s[sp - 1] = s[sp - 1] * s[sp]; sp--; break;
-                    case Opcode.DIV:
+                    case Opcode.Div:
                         s[sp - 1] = s[sp - 1] / s[sp]; sp--; break;
-                    case Opcode.MOD:
+                    case Opcode.Mod:
                         s[sp - 1] = s[sp - 1] % s[sp]; sp--; break;
-                    case Opcode.EQ:
+                    case Opcode.Eq:
                         s[sp - 1] = (s[sp - 1] == s[sp] ? 1 : 0); sp--; break;
                     case Opcode.LT:
                         s[sp - 1] = (s[sp - 1] < s[sp] ? 1 : 0); sp--; break;
-                    case Opcode.NOT:
+                    case Opcode.Not:
                         s[sp] = (s[sp] == 0 ? 1 : 0); break;
-                    case Opcode.DUP:
+                    case Opcode.Dup:
                         s[sp + 1] = s[sp]; sp++; break;
-                    case Opcode.SWAP:
+                    case Opcode.Swap:
                         { int tmp = s[sp]; s[sp] = s[sp - 1]; s[sp - 1] = tmp; } break;
-                    case Opcode.LDI:                 // load indirect
+                    case Opcode.LdI:                 // load indirect
                         s[sp] = s[s[sp]]; break;
-                    case Opcode.STI:                 // store indirect, keep value on top
+                    case Opcode.StI:                 // store indirect, keep value on top
                         s[s[sp - 1]] = s[sp]; s[sp - 1] = s[sp]; sp--; break;
-                    case Opcode.GETBP:
+                    case Opcode.GetBp:
                         s[sp + 1] = bp; sp++; break;
-                    case Opcode.GETSP:
+                    case Opcode.GetSp:
                         s[sp + 1] = sp; sp++; break;
-                    case Opcode.INCSP:
+                    case Opcode.IncSp:
                         sp = sp + p[pc++]; break;
-                    case Opcode.GOTO:
+                    case Opcode.Goto:
                         pc = p[pc]; break;
-                    case Opcode.IFZERO:
+                    case Opcode.IfZero:
                         pc = (s[sp--] == 0 ? p[pc] : pc + 1); break;
-                    case Opcode.IFNZRO:
+                    case Opcode.IfNZero:
                         pc = (s[sp--] != 0 ? p[pc] : pc + 1); break;
-                    case Opcode.CALL:
+                    case Opcode.Call:
                         {
                             int argc = p[pc++];
                             for (int i = 0; i < argc; i++)	   // Make room for return address
@@ -148,7 +148,7 @@ namespace Machine
                             bp = sp + 1 - argc;
                             pc = p[pc];
                         } break;
-                    case Opcode.TCALL:
+                    case Opcode.TCall:
                         {
                             int argc = p[pc++];                // Number of new arguments
                             int pop = p[pc++];		   // Number of variables to discard
@@ -156,27 +156,27 @@ namespace Machine
                                 s[sp - i - pop] = s[sp - i];
                             sp = sp - pop; pc = p[pc];
                         } break;
-                    case Opcode.RET:
+                    case Opcode.Ret:
                         {
                             int res = s[sp];
                             sp = sp - p[pc]; bp = s[--sp]; pc = s[--sp];
                             s[sp] = res;
                         } break;
-                    case Opcode.PRINTI:
+                    case Opcode.PrintI:
                         Console.Write(s[sp] + " "); break;
-                    case Opcode.PRINTC:
+                    case Opcode.PrintC:
                         Console.Write((char)(s[sp])); break;
-                    case Opcode.LDARGS:
+                    case Opcode.LdArgs:
                         foreach (int x in iargs)
                             s[++sp] = x;
                         break;
-                    case Opcode.READ:
+                    case Opcode.Read:
                         if (inputs.MoveNext())
                             s[++sp] = inputs.Current;
                         else
                             throw new Exception("No more input");
                         break;
-                    case Opcode.STOP:
+                    case Opcode.Stop:
                         return sp;
                     default:
                         throw new Exception("Illegal instruction " + p[pc - 1]
@@ -191,33 +191,33 @@ namespace Machine
         {
             switch ((Opcode)p[pc])
             {
-                case Opcode.CSTI: return "CST " + p[pc + 1];
-                case Opcode.ADD: return "ADD";
-                case Opcode.SUB: return "SUB";
-                case Opcode.MUL: return "MUL";
-                case Opcode.DIV: return "DIV";
-                case Opcode.MOD: return "MOD";
-                case Opcode.EQ: return "EQ";
+                case Opcode.CstI: return "CST " + p[pc + 1];
+                case Opcode.Add: return "ADD";
+                case Opcode.Sub: return "SUB";
+                case Opcode.Mul: return "MUL";
+                case Opcode.Div: return "DIV";
+                case Opcode.Mod: return "MOD";
+                case Opcode.Eq: return "EQ";
                 case Opcode.LT: return "LT";
-                case Opcode.NOT: return "NOT";
-                case Opcode.DUP: return "DUP";
-                case Opcode.SWAP: return "SWAP";
-                case Opcode.LDI: return "LDI";
-                case Opcode.STI: return "STI";
-                case Opcode.GETBP: return "GETBP";
-                case Opcode.GETSP: return "GETSP";
-                case Opcode.INCSP: return "INCSP " + p[pc + 1];
-                case Opcode.GOTO: return "GOTO " + p[pc + 1];
-                case Opcode.IFZERO: return "IFZERO " + p[pc + 1];
-                case Opcode.IFNZRO: return "IFNZRO " + p[pc + 1];
-                case Opcode.CALL: return "CALL " + p[pc + 1] + " " + p[pc + 2];
-                case Opcode.TCALL: return "TCALL " + p[pc + 1] + " " + p[pc + 2] + " " + p[pc + 3];
-                case Opcode.RET: return "RET " + p[pc + 1];
-                case Opcode.PRINTI: return "PRINTI";
-                case Opcode.PRINTC: return "PRINTC";
-                case Opcode.LDARGS: return "LDARGS";
-                case Opcode.READ: return "READ";
-                case Opcode.STOP: return "STOP";
+                case Opcode.Not: return "NOT";
+                case Opcode.Dup: return "DUP";
+                case Opcode.Swap: return "SWAP";
+                case Opcode.LdI: return "LDI";
+                case Opcode.StI: return "StI";
+                case Opcode.GetBp: return "GetBp";
+                case Opcode.GetSp: return "GetSp";
+                case Opcode.IncSp: return "IncSp " + p[pc + 1];
+                case Opcode.Goto: return "GOTO " + p[pc + 1];
+                case Opcode.IfZero: return "IfZero " + p[pc + 1];
+                case Opcode.IfNZero: return "IfNZero " + p[pc + 1];
+                case Opcode.Call: return "CALL " + p[pc + 1] + " " + p[pc + 2];
+                case Opcode.TCall: return "TCall " + p[pc + 1] + " " + p[pc + 2] + " " + p[pc + 3];
+                case Opcode.Ret: return "Ret " + p[pc + 1];
+                case Opcode.PrintI: return "PrintI";
+                case Opcode.PrintC: return "PrintC";
+                case Opcode.LdArgs: return "LdArgs";
+                case Opcode.Read: return "Read";
+                case Opcode.Stop: return "Stop";
                 default: return "<unknown>";
             }
         }

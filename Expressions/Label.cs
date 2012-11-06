@@ -21,7 +21,7 @@ namespace Expressions
         }
 
         public Label(string name)
-            : base(Opcode.LABEL)
+            : base(Opcode.Label)
         {
             _name = name;
         }
