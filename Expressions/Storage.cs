@@ -5,6 +5,6 @@ namespace Expressions
     /// </summary>
     public class Storage
     {
-        public int value = 0;
+        public int Value { get; set; }
     }
 }
