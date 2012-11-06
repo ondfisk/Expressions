@@ -54,7 +54,7 @@
     <Compile Include="Generator.cs" />
     <Compile Include="Goto.cs" />
     <Compile Include="IfNotZero.cs" />
-    <Compile Include="IFZERO.cs" />
+    <Compile Include="IfZero0.cs" />
     <Compile Include="INCSP.cs" />
     <Compile Include="Instruction.cs" />
     <Compile Include="IntArgInstr.cs" />
