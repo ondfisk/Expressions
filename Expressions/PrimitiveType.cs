@@ -4,13 +4,21 @@ namespace Expressions
 {
     public class PrimitiveType : Type
     {
-        public readonly String name;
+        private readonly string _name;
+
+        public string Name
+        {
+            get { return _name; }
+        }
 
         public PrimitiveType(String name)
         {
-            this.name = name;
+            _name = name;
         }
 
-        public override String ToString() { return name; }
+        public override string ToString()
+        {
+            return _name;
+        }
     }
 }
