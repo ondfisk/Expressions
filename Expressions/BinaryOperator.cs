@@ -137,7 +137,7 @@ namespace Expressions
                     break;
                 case Operator.Or:
                     gen.Emit(Instruction.ADD);
-                    gen.Emit(new CstI(0));
+                    gen.Emit(new CstICSTI(0));
                     gen.Emit(Instruction.EQ);
                     gen.Emit(Instruction.NOT);
                     break;

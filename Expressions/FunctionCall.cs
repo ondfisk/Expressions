@@ -38,7 +38,7 @@ namespace Expressions
         {
             _arg.Compile(env, gen);
             var label = env.getFunctionLabel(_name);
-            gen.Emit(new Call(1, label));
+            gen.Emit(new CallCALL(1, label));
         }
     }
 }
