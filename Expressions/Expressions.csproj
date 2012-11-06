@@ -45,7 +45,7 @@
     <Compile Include="Call.cs" />
     <Compile Include="CompilationEnvironment.cs" />
     <Compile Include="Constant.cs" />
-    <Compile Include="CSTI.cs" />
+    <Compile Include="CstI.cs" />
     <Compile Include="Expression.cs" />
     <Compile Include="RET.cs" />
     <Compile Include="FunctionEnvironment.cs" />

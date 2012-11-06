@@ -56,7 +56,7 @@ namespace Expressions
                     gen.Emit(Instruction.NOT);
                     break;
                 case Operator.Neg:
-                    gen.Emit(new CSTI(0));
+                    gen.Emit(new CstI(0));
                     gen.Emit(Instruction.SWAP);
                     gen.Emit(Instruction.SUB);
                     break;

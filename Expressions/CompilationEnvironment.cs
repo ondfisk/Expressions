@@ -49,7 +49,7 @@ namespace Expressions
                 if (variableName == name)
                 {
                     gen.Emit(Instruction.GETSP);
-                    gen.Emit(new CSTI(offset));
+                    gen.Emit(new CstI(offset));
                     gen.Emit(Instruction.SUB);
                     return;
                 }

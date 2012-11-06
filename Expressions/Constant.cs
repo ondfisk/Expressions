@@ -23,7 +23,7 @@ namespace Expressions
 
         public override void Compile(CompilationEnvironment env, Generator gen)
         {
-            gen.Emit(new CSTI(_value));
+            gen.Emit(new CstI(_value));
         }
     }
 }
