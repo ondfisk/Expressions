@@ -258,7 +258,7 @@ public Program program;
 		} else if (la.kind == 2) {
 			Get();
 			e = new Constant(Convert.ToInt32(t.val), 
-			                Type.IntegerType); 
+			                Type.intType); 
 		} else if (la.kind == 18) {
 			Get();
 			Factor(out e1);

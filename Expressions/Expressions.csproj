@@ -71,7 +71,7 @@
     <Compile Include="Scanner.cs" />
     <Compile Include="SimpleInstruction.cs" />
     <Compile Include="Storage.cs" />
-    <Compile Include="TCALL.cs" />
+    <Compile Include="TCall.cs" />
     <Compile Include="TypeCheckingEnvironment.cs" />
     <Compile Include="Type.cs" />
     <Compile Include="UnOp.cs" />

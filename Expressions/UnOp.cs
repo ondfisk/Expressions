@@ -33,13 +33,13 @@ namespace Expressions
             switch (op)
             {
                 case Operator.Neg:
-                    if (t1 == Type.intType)
-                        return Type.intType;
+                    if (t1 == Type.IntegerType)
+                        return Type.IntegerType;
                     else
                         throw new InvalidOperationException("Argument to - must be int");
                 case Operator.Not:
-                    if (t1 == Type.boolType)
-                        return Type.boolType;
+                    if (t1 == Type.BooleanType)
+                        return Type.BooleanType;
                     else
                         throw new InvalidOperationException("Argument to ! must be bool");
                 default:

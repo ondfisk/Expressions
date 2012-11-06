@@ -43,8 +43,8 @@ FunctionDefinition<out FunctionDefinition f, out String name> (. f = null; Strin
 .
 
 TypeExpr<out Type t>  (. t = null; .)
-= "int"    (. t = Type.intType; .)
-| "bool"  (. t = Type.boolType; .)
+= "int"    (. t = Type.IntegerType; .)
+| "bool"  (. t = Type.BooleanType; .)
 .
 
 
@@ -122,7 +122,7 @@ Factor<out Expression e>   (. String name; Expression e1; e = null; .)
         '(' Expr<out e1> ')' (. e = new FunctionCall(name, e1); .)
      ]
   | number                 (. e = new Constant(Convert.ToInt32(t.val), 
-                                               Type.intType); .)
+                                               Type.IntegerType); .)
   | '-' Factor<out e1>     (. e = new UnOp(Operator.Neg, e1); .)
   | '(' Expr<out e1> ')'   (. e = e1; .)
   )

@@ -61,9 +61,9 @@ namespace Expressions
                 case Operator.Div:
                 case Operator.Mul:
                 case Operator.Sub:
-                    if (t1 == Type.intType && t2 == Type.intType)
+                    if (t1 == Type.IntegerType && t2 == Type.IntegerType)
                     {
-                        return Type.intType;
+                        return Type.IntegerType;
                     }
                     throw new InvalidOperationException("Arguments to + - * / must be int");
                 case Operator.Eq:
@@ -72,16 +72,16 @@ namespace Expressions
                 case Operator.Le:
                 case Operator.Lt:
                 case Operator.Ne:
-                    if (t1 == Type.intType && t2 == Type.intType)
+                    if (t1 == Type.IntegerType && t2 == Type.IntegerType)
                     {
-                        return Type.boolType;
+                        return Type.BooleanType;
                     }
                     throw new InvalidOperationException("Arguments to == >= > <= < != must be int");
                 case Operator.Or:
                 case Operator.And:
-                    if (t1 == Type.boolType && t2 == Type.boolType)
+                    if (t1 == Type.BooleanType && t2 == Type.BooleanType)
                     {
-                        return Type.boolType;
+                        return Type.BooleanType;
                     }
                     throw new InvalidOperationException("Arguments to & must be bool");
                 default: 
