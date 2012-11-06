@@ -35,7 +35,7 @@ namespace Expressions
         {
             // Generate compiletime environment
             var labelMap = new Dictionary<String, String>();
-            foreach (String funName in fenv.getFunctionNames())
+            foreach (String funName in fenv.GetFunctionNames())
                 labelMap.Add(funName, Label.Fresh());
             CompilationEnvironment cenv = new CompilationEnvironment(labelMap);
 
@@ -45,7 +45,7 @@ namespace Expressions
             gen.Emit(Instruction.STOP);
 
             // Compile functions
-            foreach (FunctionDefinition f in fenv.getFunctions())
+            foreach (FunctionDefinition f in fenv.GetFunctions())
             {
                 cenv = new CompilationEnvironment(labelMap);
                 f.Compile(gen, cenv);

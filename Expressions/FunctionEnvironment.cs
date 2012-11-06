@@ -8,35 +8,38 @@ namespace Expressions
     /// </summary>
     public class FunctionEnvironment
     {
-        private Dictionary<string, FunctionDefinition> functions;
+        private readonly IDictionary<string, FunctionDefinition> _functions;
 
-        public FunctionEnvironment(Dictionary<string, FunctionDefinition> functions)
+        public FunctionEnvironment(IDictionary<string, FunctionDefinition> functions)
         {
-            this.functions = functions;
+            _functions = functions;
         }
 
         public void Check(TypeCheckingEnvironment typeCheckingEnvironment, FunctionEnvironment functionEnvironment)
         {
-            foreach (FunctionDefinition f in functions.Values)
+            foreach (var f in _functions.Values)
+            {
                 f.Check(typeCheckingEnvironment, functionEnvironment);
+            }
         }
 
-        public FunctionDefinition getFunction(String name)
+        public FunctionDefinition GetFunction(string name)
         {
-            if (functions.ContainsKey(name))
-                return functions[name];
-            else
-                throw new Exception("Undefined Function " + name);
+            if (_functions.ContainsKey(name))
+            {
+                return _functions[name];
+            }
+            throw new Exception("Undefined Function " + name);
         }
 
-        public List<FunctionDefinition> getFunctions()
+        public ICollection<FunctionDefinition> GetFunctions()
         {
-            return new List<FunctionDefinition>(functions.Values);
+            return new List<FunctionDefinition>(_functions.Values);
         }
 
-        public List<String> getFunctionNames()
+        public ICollection<string> GetFunctionNames()
         {
-            return new List<String>(functions.Keys);
+            return new List<string>(_functions.Keys);
         }
     }
 }

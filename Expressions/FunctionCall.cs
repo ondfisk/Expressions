@@ -19,7 +19,7 @@ namespace Expressions
         public override Type Check(TypeCheckingEnvironment typeCheckingEnvironment, FunctionEnvironment functionEnvironment)
         {
             var argumentType = _arg.Check(typeCheckingEnvironment, functionEnvironment);
-            var function = functionEnvironment.getFunction(_name);
+            var function = functionEnvironment.GetFunction(_name);
             if (function.CheckArgType(argumentType))
             {
                 return function.ReturnType;
@@ -30,7 +30,7 @@ namespace Expressions
         public override int Eval(RuntimeEnvironment runtimeEnvironment, FunctionEnvironment functionEnvironment)
         {
             var argumentValue = _arg.Eval(runtimeEnvironment, functionEnvironment);
-            var function = functionEnvironment.getFunction(_name);
+            var function = functionEnvironment.GetFunction(_name);
             return function.Eval(runtimeEnvironment, functionEnvironment, argumentValue);
         }
 
