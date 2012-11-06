@@ -1,29 +1,27 @@
-using System;
-
 namespace Expressions
 {
     public class Variable : Expression
     {
-        private readonly string name;
+        private readonly string _name;
 
         public Variable(string name)
         {
-            this.name = name;
+            _name = name;
         }
 
         public override int Eval(RuntimeEnvironment runtimeEnvironment, FunctionEnvironment functionEnvironment)
         {
-            return runtimeEnvironment.GetVariable(name).Value;
+            return runtimeEnvironment.GetVariable(_name).Value;
         }
 
         public override Type Check(TypeCheckingEnvironment typeCheckingEnvironment, FunctionEnvironment functionEnvironment)
         {
-            return typeCheckingEnvironment.GetVariable(name);
+            return typeCheckingEnvironment.GetVariable(_name);
         }
 
         public override void Compile(CompilationEnvironment compilationEnvironment, Generator generator)
         {
-            compilationEnvironment.CompileVariable(generator, name);
+            compilationEnvironment.CompileVariable(generator, _name);
             generator.Emit(Instruction.LdI);
         }
     }
