@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Expressions
 {
-    public class CallCALL : Instruction
+    public class Call : Instruction
     {
         private readonly int _argCount;
         private readonly string _target;
@@ -22,7 +22,7 @@ namespace Expressions
             get { return _target; }
         }
 
-        public CallCALL(int argCount, string target)
+        public Call(int argCount, string target)
             : base(Opcode.CALL)
         {
             _argCount = argCount;
