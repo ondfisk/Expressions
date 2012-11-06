@@ -1,5 +1,6 @@
 /* Coco/R lexer and parser specification for arithmetic expressions. */
 /* 2006-09-14 */
+/* Modified 2012-11-06 */
 
 /* Build with:
  *   Coco.exe -namespace Expressions Expressions.ATG
