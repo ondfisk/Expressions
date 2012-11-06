@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Expressions
 {
-    public class IntArgInstr : Instruction
+    public class IntegerArgumentInstruction : Instruction
     {
         private readonly int _argument;
 
@@ -16,7 +16,7 @@ namespace Expressions
             get { return _argument; }
         }
 
-        public IntArgInstr(Opcode opcode, int argument)
+        public IntegerArgumentInstruction(Opcode opcode, int argument)
             : base(opcode)
         {
             _argument = argument;

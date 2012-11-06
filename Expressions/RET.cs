@@ -5,7 +5,7 @@
 
 namespace Expressions
 {
-    public class RET : IntArgInstr
+    public class RET : IntegerArgumentInstruction
     {
         public RET(int argument) : base(Opcode.RET, argument) { }
     }

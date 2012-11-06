@@ -57,7 +57,7 @@
     <Compile Include="IfZero.cs" />
     <Compile Include="IncSP.cs" />
     <Compile Include="Instruction.cs" />
-    <Compile Include="IntArgInstr.cs" />
+    <Compile Include="IntegerArgumentInstruction.cs" />
     <Compile Include="JumpInstruction.cs" />
     <Compile Include="Label.cs" />
     <Compile Include="MainProgram.cs" />
