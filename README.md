@@ -3,6 +3,13 @@
 
 **Expressions** is a...
 
+The solution can be opened directly with Visual Studio 2010/2012 and built.
+
+This includes automatic build targets for Coco/R.
+
+The output is an Expressions.exe and a Machine.exe file in the Output folder.
+
+Run either Expressions.exe or Machine.exe from the command line for more info.
 
 License
 =======
