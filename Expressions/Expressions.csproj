@@ -55,7 +55,7 @@
     <Compile Include="Goto.cs" />
     <Compile Include="IfNotZero.cs" />
     <Compile Include="IfZero.cs" />
-    <Compile Include="IncrementStackPointer.cs" />
+    <Compile Include="IncSP.cs" />
     <Compile Include="Instruction.cs" />
     <Compile Include="IntArgInstr.cs" />
     <Compile Include="JumpInstruction.cs" />
