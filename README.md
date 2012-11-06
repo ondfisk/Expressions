@@ -1,7 +1,9 @@
 ﻿Expressions
 =======
 
-**Expressions** is a...
+**Expressions** is an educational tool for teaching lexers, parsers, and compilers at the IT University of Copenhagen.
+
+The core of the project was built by Peter Sestoft.
 
 The solution can be opened directly with Visual Studio 2010/2012 and built.
 
