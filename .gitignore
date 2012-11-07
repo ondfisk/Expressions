@@ -30,6 +30,9 @@ local.properties
 
 # Expressions output
 [Oo]utput/*.exe
+[Ou]utput/*.mdb
+*.cs.old
+*.userprefs
 
 #################
 ## Visual Studio
