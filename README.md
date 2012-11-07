@@ -1,7 +1,7 @@
 ﻿Expressions
 =======
 
-**Expressions** is an educational tool for teaching lexers, parsers, and compilers at the IT University of Copenhagen.
+**Expressions** is an educational tool for teaching lexers, parsers, and compilers used at the IT University of Copenhagen.
 
 The core of the project was built by Peter Sestoft.
 
@@ -12,6 +12,8 @@ This includes automatic build targets for Coco/R.
 The output is an Expressions.exe and a Machine.exe file in the Output folder.
 
 Run either Expressions.exe or Machine.exe from the command line for more info.
+
+The current version has full support for Visual Studio 2010, 2012, and Mono.
 
 License
 =======
