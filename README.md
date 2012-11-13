@@ -13,6 +13,8 @@ Run either Expressions.exe or Machine.exe from the command line for more info.
 
 The current version has full support for Visual Studio 2010, 2012, and Mono.
 
+The solution also contains a unit test project, which can be easily extended to allow a test-first approach to modifying expressions.
+
 License
 =======
 
