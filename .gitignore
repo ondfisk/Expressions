@@ -169,4 +169,4 @@ pip-log.txt
 .DS_Store
 
 # Mono Develop test folders
-test-results
+test-results/
