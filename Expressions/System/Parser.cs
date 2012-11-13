@@ -27,7 +27,7 @@ public class Parser {
 
 public Program program;
 
-/*--------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------------------------*/
 
 
 	public Parser(Scanner scanner) {
@@ -88,8 +88,8 @@ public Program program;
 
 	
 	void Program(out Program p) {
-		p = null; FunctionDefinition f = null; string name = null; Expression e = null;
-		    Dictionary<string, FunctionDefinition> functions = new Dictionary<string, FunctionDefinition>(); 
+		p = null; FunctionDefinition f = null; string name = null; Expression e = null;                                      
+		Dictionary<string, FunctionDefinition> functions = new Dictionary<string, FunctionDefinition>(); 
 		while (la.kind == 7 || la.kind == 8) {
 			FunctionDefinition(out f, out name);
 			functions.Add(name, f); 
@@ -99,7 +99,7 @@ public Program program;
 	}
 
 	void FunctionDefinition(out FunctionDefinition f, out string name) {
-		f = null; String an = null; Expression e = null;
+		f = null; string an = null; Expression e = null;
 		             Type at = null; Type rt = null;
 		TypeExpr(out rt);
 		Ident(out name);
@@ -190,32 +190,32 @@ public Program program;
 		switch (la.kind) {
 		case 11: {
 			Get();
-			op = Operator.Eq;  
+			op = Operator.Eq; 
 			break;
 		}
 		case 12: {
 			Get();
-			op = Operator.Ne;  
+			op = Operator.Ne; 
 			break;
 		}
 		case 13: {
 			Get();
-			op = Operator.Lt;  
+			op = Operator.Lt; 
 			break;
 		}
 		case 14: {
 			Get();
-			op = Operator.Le;  
+			op = Operator.Le; 
 			break;
 		}
 		case 15: {
 			Get();
-			op = Operator.Gt;  
+			op = Operator.Gt; 
 			break;
 		}
 		case 16: {
 			Get();
-			op = Operator.Ge;  
+			op = Operator.Ge; 
 			break;
 		}
 		default: SynErr(23); break;
@@ -225,11 +225,11 @@ public Program program;
 	void Term(out Expression e) {
 		Operator op; Expression e1, e2; 
 		Factor(out e1);
-		e = e1;                         
+		e = e1; 
 		while (la.kind == 19 || la.kind == 20) {
 			MulOp(out op);
 			Factor(out e2);
-			e = new BinaryOperation(op, e, e2);       
+			e = new BinaryOperation(op, e, e2); 
 		}
 	}
 
@@ -257,8 +257,7 @@ public Program program;
 			}
 		} else if (la.kind == 2) {
 			Get();
-			e = new Constant(Convert.ToInt32(t.val), 
-			                Type.IntegerType); 
+			e = new Constant(int.Parse(t.val), Type.IntegerType); 
 		} else if (la.kind == 18) {
 			Get();
 			Factor(out e1);

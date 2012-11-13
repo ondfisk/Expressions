@@ -71,7 +71,7 @@
     <Compile Include="System\RuntimeEnvironment.cs" />
     <Compile Include="System\SimpleInstruction.cs" />
     <Compile Include="System\Storage.cs" />
-    <Compile Include="System\TCall.cs" />
+    <Compile Include="System\TailCall.cs" />
     <Compile Include="System\TypeCheckingEnvironment.cs" />
     <Compile Include="System\Type.cs" />
     <Compile Include="UnaryOperation.cs" />

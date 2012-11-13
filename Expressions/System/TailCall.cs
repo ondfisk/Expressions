@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Expressions
 {
-    public class TCall : Instruction
+    public class TailCall : Instruction
     {
         private readonly int _argCount;
         private readonly int _slideBy;
@@ -28,7 +28,7 @@ namespace Expressions
             get { return _target; }
         }
 
-        public TCall(int argCount, int slideBy, string target)
+        public TailCall(int argCount, int slideBy, string target)
             : base(Opcode.TCall)
         {
             _argCount = argCount;
